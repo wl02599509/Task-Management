@@ -45,10 +45,9 @@ jobs:
           bundle install --jobs 4 --retry 3
           yarn install
       - name: Setup test database
-        run: node client.js
         env:
           RAILS_ENV: test
-          PGHOST: postgres
+          POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
           PGUSER: rails_github_actions_test
         run: |
