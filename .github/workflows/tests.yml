@@ -12,9 +12,10 @@ permissions:
   contents: read
 
 jobs:
-  container-job:
+  verify:
+    name: Build
     runs-on: ubuntu-latest
-    container: node:10.18-jessie
+    
     services:
       postgres:
         image: postgres
