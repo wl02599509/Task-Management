@@ -47,16 +47,16 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
+          PGHOST: postgres
+          POSTGRES_PORT: 5432
           PGUSER: rails_github_actions_test
         run: |
           cp config/database.ci.yml config/database.yml
-          rake --network="host" db:create db:migrate
+          rake db:create db:migrate
       - name: Run tests
         env:
-          PGHOST: localhost
+          PGHOST: postgres
           PGUSER: rails_github_actions
-          # 獲得分發的端口
           PGPORT: ${{ job.services.postgres.ports[5432] }}
           RAILS_ENV: test
         run: rspec
