@@ -30,4 +30,28 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  #views/tasks/index
+  Task Index: Task Index
+  Task_Title: Task_Title
+  Task_Content: Task_Content
+  Add Task: Add Task
+  edit_tast: edit
+  delete_task: delete
+  Are your sure to delete?: Are your sure to delete?
+
+  #views/tasks/_form
+  submit: Submit
+
+  #controller/task
+  task_created: Task Created!
+  task_updated: Task Updated!
+  task_deleted: Task Deleted!
+
+
+  activerecord:
+    attributes:
+      task:
+        title: title
+        content: content
+    model:
+      task: task
