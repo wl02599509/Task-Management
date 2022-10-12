@@ -48,10 +48,10 @@ jobs:
         env:
           RAILS_ENV: test
           PGHOST: localhost
-          PGUSER: rails_github_actions
+          PGUSER: rails_github_actions_test
         run: |
           cp config/database.ci.yml config/database.yml
-          rake db:create db:migrate
+          rake --network="host" db:create db:migrate
       - name: Run tests
         env:
           PGHOST: localhost
