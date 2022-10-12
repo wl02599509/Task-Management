@@ -1,84 +1,44 @@
-name: CI
-on: [push, pull_request]
+name: "CI Tests"
+
+on: "pull_request"
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: "Ruby ${{ matrix.ruby }}, Rails ${{ matrix.rails }}"
+
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: "3.1.2"
+        rails: "7.0.4"
+
+    env:
+      RAILS_VERSION: "${{ matrix.rails }}"
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.2
-          bundler-cache: true
-      - name: Install Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12.16.x'
-      - name: Restore cached ./node_modules
-        uses: actions/cache@v2
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-yarn-lock-${{ hashFiles('./yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-lock-
-      - name: Yarn Install
-        run: yarn install
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    services:
-       services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1.2
-          bundler-cache: true
-      - name: Install Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Restore cached ./node_modules
-        uses: actions/cache@v2
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-yarn-lock-${{ hashFiles('./yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-lock-
-      - name: Yarn Install
-        run: yarn install
-      - - name: Setup test database
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: "postgres://postgres@localhost:5432/rails_github_actions_test"
-          POSTGRES_HOST: localhost
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        run: |
-          cp config/database.ci.yml config/database.yml
-          cat config/database.yml
-          bin/rails db:create
-      - name: Run tests
-        env:
-          REDIS_URL: redis://localhost:6379/1
-          RAILS_ENV: test
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-        run: |
-          bundle exec rspec --format RspecJunitFormatter --out ./reports/rspec.xml
-      - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v2
-        with:
-          report_paths: './reports/rspec.xml'
+    - uses: "actions/checkout@v2"
+
+    - name: "Install Ruby ${{ matrix.ruby }}"
+      uses: "ruby/setup-ruby@v1"
+      with:
+        ruby-version: "${{ matrix.ruby }}"
+
+    - name: "Generate lockfile"
+      run: |
+        bundle config path vendor/bundle
+        bundle lock
+    - uses: "actions/cache@v1"
+      with:
+        path: "vendor/bundle"
+        key: bundle-${{ hashFiles('Gemfile.lock') }}
+
+    - name: "Install dependencies"
+      run: bundle install
+
+    - name: "Minitest support"
+      run: bin/test
+
+    - name: "RSpec support"
+      run: bundle exec rspec
