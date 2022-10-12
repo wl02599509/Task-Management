@@ -18,7 +18,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         ports:
-          - 5430:5430
+          - 5432:5432
 
     steps:
       - uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          DATABASE_URL: "postgres://postgres@localhost:5430/rails_github_actions_test"
+          DATABASE_URL: "postgres://postgres@localhost:5432/rails_github_actions_test"
           POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -49,5 +49,5 @@ jobs:
           POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5430] }}
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
         run: rspec
