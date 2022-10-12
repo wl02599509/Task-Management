@@ -44,7 +44,6 @@ jobs:
           bundle install --jobs 4 --retry 3
           yarn install
       - name: Setup test database
-        run: node client.js
         env:
           DATABASE_URL: postgres://postgres@localhost:5432/rails_github_actions_test
           RAILS_ENV: test
