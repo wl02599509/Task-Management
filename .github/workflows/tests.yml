@@ -44,12 +44,10 @@ jobs:
           bundle install --jobs 4 --retry 3
           yarn install
       - name: Setup test database
-        run: node client.js
         env:
           RAILS_ENV: test
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
-          POSTGRES_USER: rails_github_actions_test
         run: |
           cp config/database.ci.yml config/database.yml
           rake db:create db:migrate
