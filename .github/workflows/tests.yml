@@ -20,16 +20,13 @@ jobs:
       postgres:
         image: postgres
         env:
-          # postgreSQL 帳號密碼設定
-          POSTGRES_USER: rails_github_actions
-          POSTGRES_DB: rails_github_actions_test
           POSTGRES_PASSWORD: postgres
-        ports: 5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
 
     steps:
       - uses: actions/checkout@v1
