@@ -12,17 +12,16 @@ permissions:
   contents: read
 
 jobs:
-  verify:
-    name: Build
+  container-job:
     runs-on: ubuntu-latest
-
+    container: node:10.18-jessie
     services:
       postgres:
-        image: postgres:11@sha256:85d79cba2d4942dad7c99f84ec389a5b9cc84fb07a3dcd3aff0fb06948cdc03b
+        image: postgres
         env:
           POSTGRES_PASSWORD: postgres
         options: >-
-          --health-cmd "pg_isready"
+          --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -45,18 +44,19 @@ jobs:
           bundle install --jobs 4 --retry 3
           yarn install
       - name: Setup test database
+        run: node client.js
         env:
           RAILS_ENV: test
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
-          PGUSER: rails_github_actions_test
+          POSTGRES_USER: rails_github_actions_test
         run: |
           cp config/database.ci.yml config/database.yml
           rake db:create db:migrate
       - name: Run tests
         env:
-          PGHOST: postgres
-          PGUSER: rails_github_actions
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
           RAILS_ENV: test
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_USER: rails_github_actions
         run: rspec
