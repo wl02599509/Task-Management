@@ -51,4 +51,4 @@ jobs:
           POSTGRES_PASSWORD: postgres
           # 獲得分發的端口
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-        run: rspec
+        run: rspec 
