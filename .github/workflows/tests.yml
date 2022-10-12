@@ -37,7 +37,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 18.8.0
+          node-version: 16
       - name: Install dependencies
         run: |
           sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
@@ -45,6 +45,7 @@ jobs:
           bundle install --jobs 4 --retry 3
           yarn install
       - name: Setup test database
+        run: node client.js
         env:
           RAILS_ENV: test
           PGHOST: postgres
