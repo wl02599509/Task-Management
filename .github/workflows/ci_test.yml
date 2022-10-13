@@ -1,0 +1,47 @@
+name: RSpec CI
+on: push
+
+jobs:
+  verify:
+    name: RSpec CI
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+          bundler-cache: true
+      - name: Install dependencies
+        run: |
+          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Setup test database and Run test
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: "postgres://postgres@localhost:5432/rails_github_actions_test"
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+        run: |
+          cp config/database.ci.yml config/database.yml
+          cat config/database.yml
+          bin/rails db:create
+          rspec
