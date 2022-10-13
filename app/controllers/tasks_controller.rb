@@ -15,7 +15,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to root_path, notice: 'Task created.'
+      redirect_to root_path, notice:t(:task_created)
     else
       render :new
     end
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to root_path, notice: 'Task updated.'
+      redirect_to root_path, notice: t(:task_updated)
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to root_path, notice: 'Task destroyed.'
+    redirect_to root_path, notice: t(:task_deleted)
   end
 
   private
