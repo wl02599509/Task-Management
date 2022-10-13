@@ -15,8 +15,8 @@ RSpec.feature 'Tasks', type: :feature do
       fill_in 'task_title', with: Faker::Job.title
       fill_in 'task_content', with: Faker::Job.field
     end
-    click_on 'Create Task'
-    expect(page).to have_content('Task created.')
+    click_on 'Submit'
+    expect(page).to have_content('Task Created')
   end
 
   scenario '#edit' do
@@ -27,8 +27,8 @@ RSpec.feature 'Tasks', type: :feature do
       fill_in 'task_title', with: Faker::Job.title
       fill_in 'task_content', with: Faker::Job.field
     end
-    click_on 'Update Task'
-    expect(page).to have_content('Task updated.')
+    click_on 'Submit'
+    expect(page).to have_content('Task Updated!')
   end
 
   scenario '#destroy' do
@@ -38,7 +38,7 @@ RSpec.feature 'Tasks', type: :feature do
     accept_confirm do
       click_on 'delete'
     end
-    expect(page).to have_content('Task destroyed.')
+    expect(page).to have_content('Task Deleted!')
     expect(page).not_to have_content(task.title)
     expect(page).not_to have_content(task.content)
     Capybara.use_default_driver  
