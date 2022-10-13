@@ -8,6 +8,17 @@ RSpec.feature 'Tasks', type: :feature do
     expect(page).to have_content('Task Index')
   end
 
+  scenario '#index created_at desc' do
+    task_1 = create(:task)
+    task_2 = create(:task)
+    task_3 = create(:task)
+    visit root_path
+    expect(page).to have_selector('tr#task_line:nth-child(1)', text: task_3.title)
+    expect(page).to have_selector('tr#task_line:nth-child(2)', text: task_2.title)
+    expect(page).to have_selector('tr#task_line:nth-child(3)', text: task_1.title)
+    expect(page).not_to have_selector('tr#task_line:nth-child(1)', text: task_1.title)
+  end
+
   scenario '#new' do
     visit root_path
     click_on 'Add Task'
