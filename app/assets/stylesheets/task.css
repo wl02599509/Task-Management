@@ -1,0 +1,13 @@
+.field_with_errors {
+  display: inline-block;
+}
+
+.field_with_errors input {
+  border-width: 2px;
+  border-color: red;
+}
+
+.field_with_errors textarea {
+  border-width: 2px;
+  border-color: red;
+}
