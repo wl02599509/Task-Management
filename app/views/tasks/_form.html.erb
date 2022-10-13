@@ -1,7 +1,7 @@
 <% if task.errors.any? %>
   <div id="errors-message">
   <% task.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+    <li><%= t(message) %></li>
   <% end %>
   </div>
 <% end %>
