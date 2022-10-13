@@ -32,6 +32,7 @@ RSpec.feature 'Tasks', type: :feature do
   end
 
   scenario '#destroy' do
+    Capybara.current_driver = :selenium_chrome_headless
     task = create(:task)
     visit root_path
     accept_confirm do
@@ -40,6 +41,7 @@ RSpec.feature 'Tasks', type: :feature do
     expect(page).to have_content('Task destroyed.')
     expect(page).not_to have_content(task.title)
     expect(page).not_to have_content(task.content)
+    Capybara.use_default_driver  
   end
 
   scenario '#show' do
