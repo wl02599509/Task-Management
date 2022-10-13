@@ -32,7 +32,7 @@ RSpec.feature 'Tasks', type: :feature do
   end
 
   scenario '#destroy' do
-    Capybara.current_driver = :selenium_chrome
+    Capybara.current_driver = :selenium_chrome_headless
     task = create(:task)
     visit root_path
     accept_confirm do
