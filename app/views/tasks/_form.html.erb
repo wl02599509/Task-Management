@@ -11,6 +11,6 @@
   <%= form.label :content %>
   <%= form.text_area :content %>
   <%= form.label :end_at %>
-  <%= form.date_field :end_at %>
+  <%= form.date_field :end_at, min: Date.today %>
   <%= form.submit t('submit') %>  
 <% end %>

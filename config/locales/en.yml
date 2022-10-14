@@ -56,5 +56,6 @@ en:
       task:
         title: title
         content: content
+        end_at: Deadline
     model:
       task: task
