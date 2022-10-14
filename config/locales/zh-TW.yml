@@ -1,0 +1,28 @@
+zh-TW:
+  #views/tasks/index
+  task_index: 任務清單
+  task_title: 任務主題
+  task_content: 內容
+  add_task: 增加任務
+  edit_task: 編輯任務
+  delete_task: 刪除任務
+  are_your_sure_to_delete?: 確定要刪除嗎？
+
+  #views/tasks/show
+  back_to_task_index: 返回任務列表
+
+  #views/tasks/_form
+  submit: 送出
+
+  #controller/task
+  task_created: 任務新增成功。
+  task_updated: 任務更新成功。
+  task_deleted: 任務已刪除。
+
+  activerecord:
+    attributes:
+      task:
+        title:  任務標題
+        content: 任務內容
+    model:
+      task: 任務

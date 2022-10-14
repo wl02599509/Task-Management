@@ -1,0 +1,20 @@
+<h1><%= t('task_index') %></h1>
+<%= link_to t('add_task'), new_task_path %>
+<table>
+  <thead>
+    <tr>
+      <td><%= t('task_title') %></td>
+      <td><%= t('task_content') %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr id="task_line">
+        <td><%= link_to task.title, task_path(task) %></td>
+        <td><%= task.content %></td>
+        <td><%= link_to t('edit_task'), edit_task_path(task) %></td>
+        <td><%= button_to t('delete_task'), task_path(task), method: 'delete', form: { data: { turbo_confirm: t('are_your_sure_to_delete?') } } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
