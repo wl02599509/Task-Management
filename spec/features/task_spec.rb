@@ -63,4 +63,22 @@ RSpec.feature 'Tasks', type: :feature do
     expect(page).to have_content(task.content)
     expect(page).to have_content(I18n.t('back_to_task_index'))
   end
+
+  scenario 'order by created_at' do
+    task_first_create = create(:task, :created_first_end_first)
+    task_second_create = create(:task, :created_last_end_last)
+    visit root_path
+    click_on I18n.t('task_created_at')
+    expect(page).to have_selector('tr#task_line:nth-child(1)', text: task_second_create.title)
+    expect(page).to have_selector('tr#task_line:nth-child(2)', text: task_first_create.title)
+  end
+
+  scenario 'order by end_at' do
+    task_first_end = create(:task, :created_first_end_first)
+    task_second_end = create(:task, :created_last_end_last)
+    visit root_path
+    click_on I18n.t('end_at')
+    expect(page).to have_selector('tr#task_line:nth-child(1)', text: task_first_end.title)
+    expect(page).to have_selector('tr#task_line:nth-child(2)', text: task_second_end.title)
+  end
 end
