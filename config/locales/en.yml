@@ -34,10 +34,13 @@ en:
   task_index: Task Index
   task_title: Task_Title
   task_content: Task_Content
+  task_created_at: Start
+  end_at: Deadline
   add_task: Add Task
   edit_task: edit
   delete_task: delete
   are_your_sure_to_delete?: Are your sure to delete?
+  no_deadline: No Deadline
 
   #views/tasks/show
   back_to_task_index: back to task index
@@ -54,7 +57,9 @@ en:
   activerecord:
     attributes:
       task:
-        title: title
-        content: content
+        title: Title
+        content: Content
+        created_at: Start
+        end_at: Deadline
     model:
       task: task

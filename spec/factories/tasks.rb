@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :task do
     title { Faker::Job.title }
     content { Faker::Job.field }
+    end_at { nil }
 
     trait :title_nil do
       title { nil }
@@ -24,8 +25,14 @@ FactoryBot.define do
     trait :content_151 do
       content { Faker::Number.number(digits: 151) }
     end
+
+    trait :created_first_end_first do
+      created_at { Time.now + 1.days }
+      end_at { Time.now + 10.days } 
+    end
+    trait :created_last_end_last do
+      created_at { Time.now + 3.days }
+      end_at { Time.now + 12.days } 
+    end
   end
-
-
-  # trait :content_151 { content "#{Faker::Number.number(digits: 151)}" }
 end
