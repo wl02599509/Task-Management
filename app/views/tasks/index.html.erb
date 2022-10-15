@@ -5,6 +5,7 @@
     <tr>
       <td><%= t('task_title') %></td>
       <td><%= t('task_content') %></td>
+      <td><%= t('task_state') %></td>
       <td><%= link_to t('task_created_at'), root_path %></td>
       <td><%= link_to t('end_at'), root_path(:time => "end_at") %></td>
     </tr>
@@ -14,6 +15,7 @@
       <tr id="task_line">
         <td><%= link_to task.title, task_path(task) %></td>
         <td><%= task.content %></td>
+        <td><%= t(task.state) %></td>
         <td><%= task.created_at.strftime('%Y-%m-%d') %></td>
         <% if task.end_at != nil %>
         <td><%= task.end_at.strftime('%Y-%m-%d') %></td>
