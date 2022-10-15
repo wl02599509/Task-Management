@@ -3,7 +3,9 @@
 class TasksController < ApplicationController
   before_action :find_task, only: %i[show edit update destroy]
   def index
-    @tasks = Task.order(created_at: :desc)
+    return @tasks = Task.order("#{params["time"]} ASC") if params["time"] === 'end_at'
+
+    @tasks = Task.order("created_at DESC")
   end
 
   def show; end
@@ -39,7 +41,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content)
+    params.require(:task).permit(:title, :content, :end_at)
   end
 
   def find_task
