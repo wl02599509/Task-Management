@@ -18,4 +18,24 @@ class Task < ApplicationRecord
       transitions from: :in_progress, to: :done      
     end
   end
+
+  def self.search_state_i18n(keyword)
+    start = I18n.t('to_be_started')
+    progress = I18n.t('in_progress')
+    done = I18n.t('done')
+
+    @state = 'to_be_started' if keyword === start
+    @state = 'in_progress' if keyword === progress
+    @state = 'done' if keyword === done
+  end
+
+  def self.search(search)
+    keyword = search
+    search_state_i18n(keyword)
+    if @state
+      self.where("state like ?", "%#{@state}%")
+    else
+      self.where("title like ?", "%#{keyword}%")
+    end
+  end
 end

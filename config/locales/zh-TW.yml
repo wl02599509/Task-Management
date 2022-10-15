@@ -18,6 +18,7 @@ zh-TW:
   delete_task: 刪除任務
   are_your_sure_to_delete?: 確定要刪除嗎？
   no_deadline: 無期限
+  search: 搜尋
 
   #views/tasks/show
   back_to_task_index: 返回任務列表

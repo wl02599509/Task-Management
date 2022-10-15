@@ -47,7 +47,7 @@ en:
   delete_task: delete
   are_your_sure_to_delete?: Are your sure to delete?
   no_deadline: No Deadline
-
+  search: Search
   #views/tasks/show
   back_to_task_index: back to task index
 

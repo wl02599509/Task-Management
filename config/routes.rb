@@ -7,4 +7,5 @@ Rails.application.routes.draw do
       post :change_state
     end
   end
+  resources :searches, only: [:index]
 end
