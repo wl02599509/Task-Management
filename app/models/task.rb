@@ -5,6 +5,10 @@ class Task < ApplicationRecord
   validates :content, presence: true, length: { maximum: 150 }
 
   def self.order_by(time = 'created_at')
-    self.order("#{time} DESC")
+    if time = 'end_at'
+      self.order("end_at ASC")
+    else
+      self.order("created_at DESC")
+    end
   end
 end

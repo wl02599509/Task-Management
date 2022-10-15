@@ -15,7 +15,7 @@
         <td><%= link_to task.title, task_path(task) %></td>
         <td><%= task.content %></td>
         <td><%= task.created_at.strftime('%Y-%m-%d') %></td>
-        <% if task.end_at != nil%>
+        <% if task.end_at != nil %>
         <td><%= task.end_at.strftime('%Y-%m-%d') %></td>
         <% else %>
         <td><%= t('no_deadline') %></td>
