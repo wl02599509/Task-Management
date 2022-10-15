@@ -15,7 +15,7 @@
       <tr id="task_line">
         <td><%= link_to task.title, task_path(task) %></td>
         <td><%= task.content %></td>
-        <td><%= t(task.state) %></td>
+        <td data-controller="state" data-action="click->state#changeState" data-task-id="<%= task.id %>"><%= t(task.state) %></td>
         <td><%= task.created_at.strftime('%Y-%m-%d') %></td>
         <% if task.end_at != nil %>
         <td><%= task.end_at.strftime('%Y-%m-%d') %></td>

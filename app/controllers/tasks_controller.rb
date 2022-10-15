@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :find_task, only: %i[show edit update destroy]
+  before_action :find_task, only: %i[show edit update destroy change_state]
   def index
     return @tasks = Task.order("#{params["time"]} ASC") if params["time"] === 'end_at'
 
@@ -36,6 +36,11 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to root_path, notice: t(:task_deleted)
+  end
+
+  def change_state
+    return @task.start! if @task.state === 'to_be_started'
+    return @task.finish! if @task.state === 'in_progress'
   end
 
   private

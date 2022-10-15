@@ -1,7 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  connect() {
-    this.element.textContent = "Hello World!"
+  changeState(){
+    const taskId = this.element.dataset.taskId
+    console.log(taskId)
   }
+
 }

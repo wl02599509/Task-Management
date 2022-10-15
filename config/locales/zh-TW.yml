@@ -3,6 +3,8 @@ zh-TW:
   to_be_started: 待處理
   in_progress: 進行中
   done: 完成
+  back_to_progress: 退回進行中
+  back_to_start: 退回待處理
 
   #views/tasks/index
   task_index: 任務清單
