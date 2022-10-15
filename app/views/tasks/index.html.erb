@@ -15,7 +15,14 @@
       <tr id="task_line">
         <td><%= link_to task.title, task_path(task) %></td>
         <td><%= task.content %></td>
-        <td data-controller="state" data-action="click->state#changeState" data-task-id="<%= task.id %>"><%= t(task.state) %></td>
+        <td data-controller="state" data-action="click->state#changeState" data-task-id="<%= task.id %>">
+        <%= t(task.state) %>
+        <% if task.state === 'to_be_started' %>
+          <%= button_to t('in_progress'), change_state_task_path(task), method: 'post' %>
+        <% elsif task.state === 'in_progress' %>
+          <%= button_to t('done'), change_state_task_path(task), method: 'post' %>
+        <% end %>
+        </td>
         <td><%= task.created_at.strftime('%Y-%m-%d') %></td>
         <% if task.end_at != nil %>
         <td><%= task.end_at.strftime('%Y-%m-%d') %></td>

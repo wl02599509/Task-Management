@@ -17,13 +17,5 @@ class Task < ApplicationRecord
     event :finish do
       transitions from: :in_progress, to: :done      
     end
-
-    event :back_to_start do
-      transitions from: :in_progress, to: :to_be_started
-    end
-
-    event :back_to_progress do
-      transitions from: :done, to: :in_progress
-    end
   end
 end
