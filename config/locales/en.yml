@@ -30,10 +30,16 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  #AASM
+  to_be_started: To be started
+  in_progress: In progress
+  done: Done
+
   #views/tasks/index
   task_index: Task Index
   task_title: Task_Title
   task_content: Task_Content
+  task_state: State
   task_created_at: Start
   end_at: Deadline
   add_task: Add Task
@@ -41,6 +47,9 @@ en:
   delete_task: delete
   are_your_sure_to_delete?: Are your sure to delete?
   no_deadline: No Deadline
+  button_in_progress: Start
+  button_done: Done
+  search: Search
 
   #views/tasks/show
   back_to_task_index: back to task index
@@ -61,5 +70,6 @@ en:
         content: Content
         created_at: Start
         end_at: Deadline
+        state: State
     model:
       task: task
