@@ -4,11 +4,17 @@ zh-TW:
   in_progress: 進行中
   done: 完成
 
+  #priority
+  high: 高
+  normal: 中
+  low: 低
+
   #views/tasks/index
   task_index: 任務清單
   task_title: 任務主題
   task_content: 內容
   task_state: 任務狀態
+  task_priority: 優先程度
   task_created_at: 開始時間
   end_at: 結束時間
   add_task: 增加任務
@@ -39,5 +45,6 @@ zh-TW:
         created_at: 開始時間
         end_at: 結束時間
         state: 狀態
+        priority: 優先
     model:
       task: 任務
