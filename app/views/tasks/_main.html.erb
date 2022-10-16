@@ -1,9 +1,11 @@
 <h1><%= t('task_index') %></h1>
 <%= link_to t('add_task'), new_task_path %>
-<%= form_with model: tasks, url: searches_path, method: 'get' do |form| %>
-  <%= form.search_field(:keyword) %>
-  <%= submit_tag t(:search) %>
-<% end %>
+<div id="search">
+  <%= form_with model: tasks, url: searches_path, method: 'get' do |form| %>
+    <%= form.search_field(:keyword) %>
+    <%= submit_tag t(:search) %>
+  <% end %>
+</div>
 <table>
   <thead>
     <tr>
@@ -22,9 +24,9 @@
         <td data-controller="state" data-action="click->state#changeState" data-task-id="<%= task.id %>">
         <%= t(task.state) %>
         <% if task.state === 'to_be_started' %>
-          <%= button_to t('in_progress'), change_state_task_path(task), method: 'post' %>
+          <%= button_to t('button_in_progress'), change_state_task_path(task), method: 'post' %>
         <% elsif task.state === 'in_progress' %>
-          <%= button_to t('done'), change_state_task_path(task), method: 'post' %>
+          <%= button_to t('button_done'), change_state_task_path(task), method: 'post' %>
         <% end %>
         </td>
         <td><%= task.created_at.strftime('%Y-%m-%d') %></td>
