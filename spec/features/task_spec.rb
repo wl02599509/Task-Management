@@ -81,4 +81,22 @@ RSpec.feature 'Tasks', type: :feature do
     expect(page).to have_selector('tr#task_line:nth-child(1)', text: task_first_end.title)
     expect(page).to have_selector('tr#task_line:nth-child(2)', text: task_second_end.title)
   end
+
+  scenario '#change_state to in_progress' do
+    task_start = create(:task, :to_be_started)
+    visit root_path
+    click_on I18n.t('button_in_progress')
+    expect(page).to have_content I18n.t('in_progress')
+    expect(page).not_to have_content I18n.t('to_be_started')
+    expect(page).not_to have_content I18n.t('done')
+  end
+
+  scenario '#change_state to done' do
+    task_start = create(:task, :in_progress)
+    visit root_path
+    click_on I18n.t('button_done')
+    expect(page).to have_content I18n.t('done')
+    expect(page).not_to have_content I18n.t('to_be_started')
+    expect(page).not_to have_content I18n.t('in_progress')
+  end
 end
