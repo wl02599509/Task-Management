@@ -29,6 +29,15 @@ RSpec.describe Task, type: :model do
     expect(content_overlength).not_to be_valid
   end
 
+  it "AASM" do
+    task = create(:task)
+    expect(task.state).to eq ('to_be_started')
+    expect(task).to allow_event :start
+    expect(task).not_to allow_event :finish
+    expect(task).to transition_from(:to_be_started).to(:in_progress).on_event(:start)
+    expect(task).to transition_from(:in_progress).to(:done).on_event(:finish)
+  end
+
   it ".search_state_i18n" do
     keyword_1 = '待處理'
     keyword_2 = '進行中'

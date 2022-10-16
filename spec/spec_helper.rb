@@ -15,8 +15,9 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-# require 'Capybara'
-# Capybara.default_driver = :selenium_chrome
+
+require 'aasm/rspec'
+
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
