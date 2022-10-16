@@ -45,14 +45,12 @@ FactoryBot.define do
         create_list(:task, 5)
       end
     end
-
     trait :in_progress do
       state { 'in_progress' }
       after :create do
         create_list(:task, 5)
       end
     end
-
     trait :done do
       state { 'done' }
       after :create do

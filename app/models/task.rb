@@ -24,9 +24,10 @@ class Task < ApplicationRecord
     progress = I18n.t('in_progress')
     done = I18n.t('done')
 
-    @state = 'to_be_started' if keyword === start
-    @state = 'in_progress' if keyword === progress
-    @state = 'done' if keyword === done
+    return @state = 'to_be_started' if keyword === start
+    return @state = 'in_progress' if keyword === progress
+    return @state = 'done' if keyword === done
+    @state = nil
   end
 
   def self.search(search)
