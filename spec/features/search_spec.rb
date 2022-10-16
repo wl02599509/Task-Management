@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "Searches", type: :feature do
   before do
-    create(:task, :to_be_started)
-    create(:task, :in_progress)
-    create(:task, :done)
+    create(:task, :many_to_be_started)
+    create(:task, :many_in_progress)
+    create(:task, :many_done)
     visit root_path
   end
 
