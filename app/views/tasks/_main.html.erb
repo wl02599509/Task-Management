@@ -57,8 +57,12 @@
         <% else %>
           <td class="px-6 py-5"><%= t('no_deadline') %></td>
         <% end %>
-        <td class="px-6 py-5"><%= link_to t('edit_task'), edit_task_path(task), :class => "p-[5px] border-[1px] border-black rounded-md hover:bg-rose-200" %></td>
-        <td class="px-6 py-5"><%= button_to t('delete_task'), task_path(task), method: 'delete', form: { data: { turbo_confirm: t('are_your_sure_to_delete?') } }, :class => "p-[5px] border-[1px] border-gray-300 text-gray-300 rounded-md hover:border-gray-600 hover:text-gray-600" %></td>
+        <td class="px-[28px] py-5">
+          <%= link_to t('edit_task'), edit_task_path(task), :class => "p-[5px] border-[1px] border-black rounded-md hover:bg-rose-200" %>
+        </td>
+        <td class="px-[27px] py-5">
+          <%= button_to t('delete_task'), task_path(task), method: 'delete', form: { data: { turbo_confirm: t('are_your_sure_to_delete?') } }, :class => "p-[5px] border-[1px] border-gray-300 text-gray-300 rounded-md hover:border-gray-600 hover:text-gray-600" %>
+        </td>
       </tr>
     <% end %>
     <div class="py-2">

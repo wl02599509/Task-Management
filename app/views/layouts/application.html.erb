@@ -13,10 +13,10 @@
 
   <body>
     <section class="w-[1200px] mx-auto">
-      <nav class='bg-red-300 text-3xl text-center py-5'>
-        <h1>TaskYourself</h1>
+      <nav class='bg-red-300 text-4xl text-center py-5'>
+        <h1><%= link_to "TaskYourself", root_path, :class => "hover:text-white"%></h1>
       </nav>
-      <div class="w-auto mt-5">
+      <div class="w-auto mt-1">
         <div class="py-2">
           <%= notice %>
         </div>
@@ -26,4 +26,11 @@
       </div>
     </section>
   </body>
+  <footer>
+    <section class="w-[1200px] mx-auto">
+      <div class="py-2 text-center bg-rose-200">
+        <span>Copyright © 2022 Mike Lai. All rights reserved.</span>
+      </div>
+    </section>
+  </footer>
 </html>
