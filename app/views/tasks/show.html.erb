@@ -1,4 +1,29 @@
-<h2><%= @task.title %></h2>
-<span><%= t(@task.state) %></span>
-<p><%= @task.content %></p>
-<%= link_to t('back_to_task_index'), root_path %>
+<div class="w-[500px] mx-auto mb-5">
+  <div class="p-3 border-[1px] border-rose-500 text-center rounded-xl">
+    <div class="flex justify-between bg-rose">
+      <% if t(@task.state) === t('done') %>
+        <span class="p-2 my-auto text-sm bg-rose-300 rounded-2xl">
+          <%= t('done') %>
+        </span>
+      <% elsif t(@task.state) === t('in_progress') %>
+        <span class="p-2 my-auto text-sm bg-yellow-300 rounded-2xl">
+          <%= t('in_progress') %>
+        </span>
+      <% else %>
+        <span class="p-2 my-auto border-[1px] border-black text-sm rounded-2xl">
+          <%= t('to_be_started') %>
+        </span>
+      <% end %>
+      <h2 class="text-3xl"><%= @task.title %></h2>
+      <span class="px-5 py-2 my-auto border-[1px] border-black text-sm rounded-2xl">
+        <%= t(@task.priority) %>
+      </span>
+    </div>
+    <div>
+      <p class="py-5"><%= @task.content %></p>
+    </div>
+    <button>
+      <%= link_to t('back_to_task_index'), root_path, :class => "p-2 border-[1px] border-black rounded-md hover:bg-rose-200" %>
+    </button>
+  </div>
+</div>
