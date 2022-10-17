@@ -43,14 +43,11 @@ RSpec.feature 'Tasks', type: :feature do
   end
 
   scenario '#destroy' do
-    Capybara.current_driver = :selenium_chrome
     task = create(:task)
     visit root_path
     click_on I18n.t('delete_task')
     expect(page).to have_content(I18n.t('task_deleted'))
     expect(page).not_to have_content(task.title)
-    expect(page).not_to have_content(task.content)
-    Capybara.use_default_driver  
   end
 
   scenario '#show' do
@@ -81,21 +78,25 @@ RSpec.feature 'Tasks', type: :feature do
   end
 
   scenario '#change_state to in_progress' do
+    Capybara.current_driver = :selenium_chrome_headless
     task_start = create(:task, :to_be_started)
     visit root_path
     click_on I18n.t('button_in_progress')
     expect(page).to have_content I18n.t('in_progress')
     expect(page).not_to have_content I18n.t('to_be_started')
     expect(page).not_to have_content I18n.t('done')
+    Capybara.use_default_driver
   end
 
   scenario '#change_state to done' do
+    Capybara.current_driver = :selenium_chrome_headless
     task_start = create(:task, :in_progress)
     visit root_path
     click_on I18n.t('button_done')
     expect(page).to have_content I18n.t('done')
     expect(page).not_to have_content I18n.t('to_be_started')
     expect(page).not_to have_content I18n.t('in_progress')
+    Capybara.use_default_driver
   end
 
   scenario 'priority' do
