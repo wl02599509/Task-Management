@@ -35,10 +35,16 @@ en:
   in_progress: In progress
   done: Done
 
+  #priority
+  high: High
+  normal: Normal
+  low: Low
+
   #views/tasks/index
   task_index: Task Index
   task_title: Task_Title
   task_content: Task_Content
+  task_priority: Priority
   task_state: State
   task_created_at: Start
   end_at: Deadline
@@ -71,5 +77,6 @@ en:
         created_at: Start
         end_at: Deadline
         state: State
+        priority: Priority
     model:
       task: task

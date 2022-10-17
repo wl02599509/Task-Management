@@ -64,5 +64,16 @@ FactoryBot.define do
         create_list(:task, 5)
       end
     end
+
+    #priority
+    trait :high do
+      priority { '0' }
+    end
+    trait :normal do
+      priority { '1' }
+    end
+    trait :low do
+      priority { '2' }
+    end
   end
 end

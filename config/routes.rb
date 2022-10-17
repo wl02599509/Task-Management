@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     end
   end
   resources :searches, only: [:index]
+  resources :priorities, only: [:index]
 end
