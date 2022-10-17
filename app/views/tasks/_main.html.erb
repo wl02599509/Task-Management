@@ -12,7 +12,7 @@
       <td><%= t('task_title') %></td>
       <td><%= t('task_content') %></td>
       <td><%= t('task_state') %></td>
-      <td><%= t('task_priority')%></td>
+      <td><%= link_to t('task_priority'), priorities_path %></td>
       <td><%= link_to t('task_created_at'), root_path %></td>
       <td><%= link_to t('end_at'), root_path(:time => "end_at") %></td>
     </tr>

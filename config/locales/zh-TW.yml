@@ -9,7 +9,8 @@ zh-TW:
   normal: 中
   low: 低
 
-  #views/tasks/index
+
+  #views/tasks/_main
   task_index: 任務清單
   task_title: 任務主題
   task_content: 內容

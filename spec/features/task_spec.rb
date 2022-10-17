@@ -99,4 +99,15 @@ RSpec.feature 'Tasks', type: :feature do
     expect(page).not_to have_content I18n.t('to_be_started')
     expect(page).not_to have_content I18n.t('in_progress')
   end
+
+  scenario 'priority' do
+    normal_task = create(:task, :normal)
+    low_task = create(:task, :low)
+    high_task = create(:task, :high)
+    visit root_path
+    click_on I18n.t('task_priority')
+    expect(page).to have_selector('tr#task_line:nth-child(1)', text: high_task.title)
+    expect(page).to have_selector('tr#task_line:nth-child(2)', text: normal_task.title)
+    expect(page).to have_selector('tr#task_line:nth-child(3)', text: low_task.title)
+  end
 end
