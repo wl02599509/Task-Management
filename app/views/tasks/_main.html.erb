@@ -1,4 +1,4 @@
-<h1><%= t('task_index') %></h1>
+<h1 class="bg-red-300 text-lg"><%= t('task_index') %></h1>
 <%= link_to t('add_task'), new_task_path %>
 <div id="search">
   <%= form_with model: tasks, url: searches_path, method: 'get' do |form| %>
