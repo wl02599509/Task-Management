@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag 'wind', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= notice %>
-    <%= yield %>
+    <section class="w-[1200px] mx-auto">
+      <nav class='bg-red-300 text-3xl text-center py-5'>
+        <h1>TaskYourself</h1>
+      </nav>
+      <div class="w-auto mt-5">
+        <div class="py-2">
+          <%= notice %>
+        </div>
+        <div>
+          <%= yield %>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

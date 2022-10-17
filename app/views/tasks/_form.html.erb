@@ -1,18 +1,50 @@
-<% if task.errors.any? %>
-  <div id="errors-message">
-  <% task.errors.full_messages.each do |message| %>
-    <li><%= t(message) %></li>
-  <% end %>
+<div class="w-[500px] mx-auto">
+  <div class="py-10 border-[1px] border-rose-500 rounded-xl">
+    <% if task.errors.any? %>
+      <div id="errors-message" class="w-fit mx-auto">
+        <% task.errors.full_messages.each do |message| %>
+          <li><%= t(message) %></li>
+        <% end %>
+      </div>
+    <% end %>
+    <%= form_for task do |form| %>
+      <div class="w-fit mx-auto">
+        <div class="p-5 flex">
+          <span class="mr-3 my-auto">
+            <%= form.label :title %>
+          </span>
+          <div>
+            <%= form.text_field :title, :class => "w-full" %>
+          </div>
+        </div>
+        <div class="p-5 flex">
+          <span class="mr-3 my-auto">
+            <%= form.label :content %>
+          </span>
+          <div>
+            <%= form.text_area :content %>
+          </div>
+        </div>
+        <div class="p-5 flex">
+          <span class="mr-3 my-auto">
+            <%= form.label :priority %>
+          </span>
+          <div class="ml-8">
+            <%= form.select :priority, [[t('high'), "0"], [t('normal'), "1"], [t('low'), "2"]] %>
+          </div>
+        </div>
+        <div class="p-5 flex">
+          <span class="mr-3 my-auto">
+            <%= form.label :end_at %>
+          </span>
+          <div>
+            <%= form.date_field :end_at, min: Date.today %>
+          </div>
+        </div>
+        <div class="text-center">
+          <%= form.submit t('submit'), :class => "px-[10px] border-[1px] border-black rounded-2xl hover:bg-rose-200" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
-<%= form_for task do |form| %>
-  <%= form.label :title %>
-  <%= form.text_field :title %>
-  <%= form.label :content %>
-  <%= form.text_area :content %>
-  <%= form.label :priority %>
-  <%= form.select :priority, [[t('high'), "0"], [t('normal'), "1"], [t('low'), "2"]] %>
-  <%= form.label :end_at %>
-  <%= form.date_field :end_at, min: Date.today %>
-  <%= form.submit t('submit') %> 
-<% end %>
+</div>

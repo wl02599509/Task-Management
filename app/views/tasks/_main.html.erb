@@ -1,47 +1,63 @@
-<h1 class="bg-red-300 text-lg"><%= t('task_index') %></h1>
-<%= link_to t('add_task'), new_task_path %>
-<div id="search">
-  <%= form_with model: tasks, url: searches_path, method: 'get' do |form| %>
-    <%= form.search_field(:keyword) %>
-    <%= submit_tag t(:search) %>
-  <% end %>
+<h2 class="py-2 text-5xl"><%= t('task_index') %></h2>
+<div class="flex py-2">
+  <div id="search">
+    <%= form_with model: tasks, url: searches_path, method: 'get' do |form| %>
+      <%= form.search_field(:keyword) %>
+      <%= submit_tag t(:search), :class => "p-2 mr-3 border-[1px] border-gray-400 hover:bg-rose-300" %>
+    <% end %>
+  </div>
+  <div class="mr-3 border-[1px] border-rose-200 hover:bg-rose-300">
+    <%= link_to t('add_task'), new_task_path, :class => "px-5 text-3xl" %>
+  </div>
 </div>
-<table>
+<table class="text-center">
   <thead>
     <tr>
-      <td><%= t('task_title') %></td>
-      <td><%= t('task_content') %></td>
-      <td><%= t('task_state') %></td>
-      <td><%= link_to t('task_priority'), priorities_path %></td>
-      <td><%= link_to t('task_created_at'), root_path %></td>
-      <td><%= link_to t('end_at'), root_path(:time => "end_at") %></td>
+      <td class="px-6 border-[1px] border-black"><%= t('task_title') %></td>
+      <td class="px-28 border-[1px] border-black"><%= t('task_content') %></td>
+      <td class="px-6 border-[1px] border-black"><%= t('task_state') %></td>
+      <td class="border-[1px] border-black hover:bg-rose-200"><%= link_to t('task_priority'), priorities_path, :class => "px-6" %></td>
+      <td class="border-[1px] border-black hover:bg-rose-200"><%= link_to t('task_created_at'), root_path, :class => "px-8" %></td>
+      <td class="border-[1px] border-black hover:bg-rose-200"><%= link_to t('end_at'), root_path(:time => "end_at"), :class => "px-8" %></td>
     </tr>
   </thead>
   <tbody>
     <% tasks.each do |task| %>
-      <tr id="task_line">
-        <td><%= link_to task.title, task_path(task) %></td>
-        <td><%= task.content %></td>
-        <td>
-        <%= t(task.state) %>
-        <% if task.state === 'to_be_started' %>
-          <%= button_to t('button_in_progress'), change_state_task_path(task), method: 'post' %>
-        <% elsif task.state === 'in_progress' %>
-          <%= button_to t('button_done'), change_state_task_path(task), method: 'post' %>
-        <% end %>
+      <tr id="task_line" class="border-[1px] border-b-black">
+        <td class="px-6 py-5"><%= link_to task.title, task_path(task) %></td>
+        <td class="px-28 py-5"><%= task.content %></td>
+        <td class="px-6">
+          <% if t(task.state) === t('done') %>
+            <div class="bg-rose-200 rounded-2xl">
+              <span><%= t('done') %></span>
+            <div>
+          <% elsif t(task.state) === t('in_progress') %>
+              <span class="p-[4px] bg-yellow-300 rounded-2xl"><%= t('in_progress') %></span>
+          <% else %>
+            <span class="p-[4px]"><%= t(task.state) %></span>
+          <% end %>
+          <% if task.state === 'to_be_started' %>
+            <button>
+              <%= button_to t('button_in_progress'), change_state_task_path(task), method: 'post', :class => "px-[5px] border-[1px] border-black rounded-2xl hover:bg-yellow-300" %>
+            </button>
+          <% elsif task.state === 'in_progress' %>
+            <button>
+              <%= button_to t('button_done'), change_state_task_path(task), method: 'post', :class => "px-[5px] border-[1px] border-black rounded-2xl hover:bg-rose-300" %>
+            </button>
+          <% end %>
         </td>
-        <td><%= t(task.priority) %></td>
-        <td><%= task.created_at.strftime('%Y-%m-%d') %></td>
+        <td class="px-6 py-5"><%= t(task.priority) %></td>
+        <td class="px-6 py-5"><%= task.created_at.strftime('%Y-%m-%d') %></td>
         <% if task.end_at != nil %>
-        <td><%= task.end_at.strftime('%Y-%m-%d') %></td>
+          <td class="px-6 py-5"><%= task.end_at.strftime('%Y-%m-%d') %></td>
         <% else %>
-        <td><%= t('no_deadline') %></td>
+          <td class="px-6 py-5"><%= t('no_deadline') %></td>
         <% end %>
-        <td><%= link_to t('edit_task'), edit_task_path(task) %></td>
-        <td><%= button_to t('delete_task'), task_path(task), method: 'delete', form: { data: { turbo_confirm: t('are_your_sure_to_delete?') } } %></td>
+        <td class="px-6 py-5"><%= link_to t('edit_task'), edit_task_path(task), :class => "p-[5px] border-[1px] border-black rounded-md hover:bg-rose-200" %></td>
+        <td class="px-6 py-5"><%= button_to t('delete_task'), task_path(task), method: 'delete', form: { data: { turbo_confirm: t('are_your_sure_to_delete?') } }, :class => "p-[5px] border-[1px] border-gray-300 text-gray-300 rounded-md hover:border-gray-600 hover:text-gray-600" %></td>
       </tr>
     <% end %>
-    <div>
+    <div class="py-2">
       <%= paginate tasks %>
     </div>
   </tbody>
