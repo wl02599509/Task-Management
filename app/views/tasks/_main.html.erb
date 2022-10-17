@@ -13,8 +13,8 @@
 <table class="text-center">
   <thead>
     <tr>
-      <td class="px-6 border-[1px] border-black"><%= t('task_title') %></td>
-      <td class="px-28 border-[1px] border-black"><%= t('task_content') %></td>
+      <td class="w-[120px] border-[1px] border-black"><%= t('task_title') %></td>
+      <td class="w-[280px] border-[1px] border-black"><%= t('task_content') %></td>
       <td class="px-6 border-[1px] border-black"><%= t('task_state') %></td>
       <td class="border-[1px] border-black hover:bg-rose-200"><%= link_to t('task_priority'), priorities_path, :class => "px-6" %></td>
       <td class="border-[1px] border-black hover:bg-rose-200"><%= link_to t('task_created_at'), root_path, :class => "px-8" %></td>
@@ -23,9 +23,13 @@
   </thead>
   <tbody>
     <% tasks.each do |task| %>
-      <tr id="task_line" class="border-[1px] border-b-black">
-        <td class="px-6 py-5"><%= link_to task.title, task_path(task) %></td>
-        <td class="px-28 py-5"><%= task.content %></td>
+      <tr id="task_line" class="flex-wrap border-[1px] border-b-black">
+        <td class="w-[120px] mx-auto">
+          <span><%= link_to task.title, task_path(task), :class => "inline-block w-full hover:bg-rose-200 break-all" %></span>
+        </td>
+        <td class="w-[280px] p-3 break-words">
+          <p><%= task.content %></p>
+        </td>
         <td class="px-6">
           <% if t(task.state) === t('done') %>
             <div class="bg-rose-200 rounded-2xl">
@@ -42,7 +46,7 @@
             </button>
           <% elsif task.state === 'in_progress' %>
             <button>
-              <%= button_to t('button_done'), change_state_task_path(task), method: 'post', :class => "px-[5px] border-[1px] border-black rounded-2xl hover:bg-rose-300" %>
+              <%= button_to t('button_done'), change_state_task_path(task), method: 'post', :class => "px-[5px] border-[1px] border-black rounded-2xl hover:bg-rose-200" %>
             </button>
           <% end %>
         </td>
