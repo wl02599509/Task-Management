@@ -40,6 +40,14 @@ en:
   normal: Normal
   low: Low
 
+  #kaminari
+  views:
+    pagination:
+      first: first
+      last: last
+      previous: previous
+      next: next
+
   #views/tasks/index
   task_index: Task Index
   task_title: Task_Title

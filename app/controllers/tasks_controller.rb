@@ -4,9 +4,12 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[show edit update destroy change_state]
 
   def index
-    return @tasks = Task.order("#{params["time"]} ASC") if params["time"] === 'end_at'
+    if params["time"] === 'end_at'
+      @tasks = Task.order("#{params["time"]} ASC").page(params[:page]).per(5)
+      return
+    end
 
-    @tasks = Task.order("created_at DESC")
+    @tasks = Task.order("created_at DESC").page(params[:page]).per(5)
   end
 
   def show; end
