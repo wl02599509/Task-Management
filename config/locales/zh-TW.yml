@@ -9,6 +9,13 @@ zh-TW:
   normal: 中
   low: 低
 
+  #kaminari
+  views:
+    pagination:
+      first: 第一頁
+      last: 最後一頁
+      previous: 前一頁
+      next: 下一頁
 
   #views/tasks/_main
   task_index: 任務清單
