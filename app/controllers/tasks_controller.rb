@@ -2,6 +2,7 @@
 
 class TasksController < ApplicationController
   before_action :find_task, only: %i[show edit update destroy change_state]
+
   def index
     return @tasks = Task.order("#{params["time"]} ASC") if params["time"] === 'end_at'
 
@@ -46,7 +47,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :end_at)
+    params.require(:task).permit(:title, :content, :end_at, :priority)
   end
 
   def find_task

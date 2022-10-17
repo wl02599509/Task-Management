@@ -10,7 +10,9 @@
   <%= form.text_field :title %>
   <%= form.label :content %>
   <%= form.text_area :content %>
+  <%= form.label :priority %>
+  <%= form.select :priority, [[t('high'), "0"], [t('normal'), "1"], [t('low'), "2"]] %>
   <%= form.label :end_at %>
   <%= form.date_field :end_at, min: Date.today %>
-  <%= form.submit t('submit') %>  
+  <%= form.submit t('submit') %> 
 <% end %>
