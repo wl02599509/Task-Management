@@ -44,11 +44,15 @@ RSpec.feature 'Tasks', type: :feature do
   end
 
   scenario '#destroy' do
+    Capybara.current_driver = :selenium_chrome_headless
     task = create(:task)
     visit root_path
-    click_on I18n.t('delete_task')
+    accept_confirm do
+      click_on I18n.t('delete_task')
+    end
     expect(page).to have_content(I18n.t('task_deleted'))
     expect(page).not_to have_content(task.title)
+    Capybara.use_default_driver
   end
 
   scenario '#show' do

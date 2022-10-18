@@ -1,4 +1,10 @@
 zh-TW:
+  # member_system
+  sign_up: 註冊
+  sign_in: 登入
+  sign_out: 登出
+  sure_to_sign_out?: 確定要登出嗎？
+
   #AASM
   to_be_started: 待處理
   in_progress: 進行中
@@ -17,6 +23,15 @@ zh-TW:
       previous: 前一頁
       next: 下一頁
 
+  #controller/user
+  user_sign_up: 註冊成功
+  user_sign_in: 登入成功
+  user_sign_out: 登出成功
+
+  #views/users
+  member_sign_up: 會員註冊
+  member_sign_in: 會員登入
+
   #views/tasks/_main
   task_index: 任務清單
   task_title: 任務主題
@@ -30,8 +45,8 @@ zh-TW:
   delete_task: 刪除任務
   are_your_sure_to_delete?: 確定要刪除嗎？
   no_deadline: 無期限
-  button_in_progress: 開始
-  button_done: 結案
+  link_in_progress: 開始
+  link_done: 結案
   search: 搜尋
 
   #views/tasks/show
@@ -44,6 +59,7 @@ zh-TW:
   task_created: 任務新增成功。
   task_updated: 任務更新成功。
   task_deleted: 任務已刪除。
+  state_changed: 狀態已變更。
 
   activerecord:
     attributes:
@@ -54,5 +70,9 @@ zh-TW:
         end_at: 結束時間
         state: 狀態
         priority: 優先
+      user:
+        name: 使用者姓名
+        email: 電子信箱
+        password: 密碼
     model:
       task: 任務

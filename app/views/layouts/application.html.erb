@@ -12,11 +12,21 @@
 
   <body>
     <section class="w-[1200px] mx-auto">
-      <nav class='bg-red-300 text-4xl text-center py-5'>
-        <h1><%= link_to "TaskYourself", root_path, :class => "hover:text-white"%></h1>
-        <%= link_to t('sign_up'), sign_up_users_path %>
-        <%= link_to t('sign_in'), sign_in_users_path %>
-        <%# <%= link_to t('sign_out'), user_sign_out_path(current_user) %> %>
+      <nav class='bg-red-300 text-center py-5'>
+        <h1 class="text-4xl"><%= link_to "TaskYourself", root_path, :class => "hover:text-white"%></h1>
+        <% if user_sign_in? %>
+        <div>
+          <span><%= current_user.name %></span>
+          <span>
+            <%= link_to t('sign_out'), session_path(current_user), data: { turbo_method: :delete, turbo_confirm: t('sure_to_sign_out?') } %>
+          </span>
+        </div>
+        <% else %>
+        <div>
+          <span><%= link_to t('sign_up'), sign_up_users_path %></span>
+          <span><%= link_to t('sign_in'), sign_in_users_path %></span>
+        </div>
+        <% end %>
       </nav>
       <div class="w-auto mt-1">
         <div class="py-2">
