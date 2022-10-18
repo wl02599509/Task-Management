@@ -6,15 +6,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
-    <%= stylesheet_link_tag 'wind', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <section class="w-[1200px] mx-auto">
       <nav class='bg-red-300 text-4xl text-center py-5'>
         <h1><%= link_to "TaskYourself", root_path, :class => "hover:text-white"%></h1>
+        <%= link_to t('sign_up'), sign_up_users_path %>
+        <%= link_to t('sign_in'), sign_in_users_path %>
+        <%# <%= link_to t('sign_out'), user_sign_out_path(current_user) %> %>
       </nav>
       <div class="w-auto mt-1">
         <div class="py-2">
