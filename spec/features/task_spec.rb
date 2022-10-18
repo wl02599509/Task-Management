@@ -20,6 +20,7 @@ RSpec.feature 'Tasks', type: :feature do
   end
 
   scenario '#new' do
+    user = create(:user)
     visit root_path
     click_on I18n.t('add_task')
     within '#new_task' do

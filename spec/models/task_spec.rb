@@ -47,10 +47,11 @@ RSpec.describe Task, type: :model do
     expect(Task.search_state_i18n(keyword_3)).to eq 'done'
   end
 
-  it ".search" do
-    ruby = Task.create(:title => 'Ruby', :content => 'Ruby', :state => 'to_be_started')
-    python = Task.create(:title => 'Python', :content => 'Python', :state => 'in_progress')
-    go = Task.create(:title => 'Go', :content => 'Go', :state => 'done')
+  it ".search by state" do
+    user = create(:user)
+    ruby = Task.create(:title => 'Ruby', :content => 'Ruby', :state => 'to_be_started', :user_id => user.id)
+    python = Task.create(:title => 'Python', :content => 'Python', :state => 'in_progress', :user_id => user.id)
+    go = Task.create(:title => 'Go', :content => 'Go', :state => 'done', :user_id => user.id)
     
     expect(Task.search('待處理')).to include ruby
     expect(Task.search('待處理')).not_to eq include python && go
@@ -60,10 +61,11 @@ RSpec.describe Task, type: :model do
     expect(Task.search('完成')).not_to eq include ruby && python
   end
 
-  it ".search" do
-    ruby = Task.create(:title => 'Ruby', :content => 'Ruby', :state => 'to_be_started')
-    python = Task.create(:title => 'Python', :content => 'Python', :state => 'in_progress')
-    go = Task.create(:title => 'Go', :content => 'Go', :state => 'done')
+  it ".search by title" do
+    user = create(:user)
+    ruby = Task.create(:title => 'Ruby', :content => 'Ruby', :state => 'to_be_started', :user_id => user.id)
+    python = Task.create(:title => 'Python', :content => 'Python', :state => 'in_progress', :user_id => user.id)
+    go = Task.create(:title => 'Go', :content => 'Go', :state => 'done', :user_id => user.id)
     
     expect(Task.search('R')).to include ruby
     expect(Task.search('R')).not_to include python && go
