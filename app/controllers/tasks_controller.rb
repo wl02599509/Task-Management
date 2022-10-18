@@ -19,7 +19,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    user = User.first
+    @task = user.tasks.new(task_params)
     if @task.save
       redirect_to root_path, notice:t(:task_created)
     else

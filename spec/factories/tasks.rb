@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :task do
+    user
     title { Faker::Job.title }
     content { Faker::Job.field }
     end_at { nil }
