@@ -38,6 +38,7 @@ heroku run rails db:migrate
 # 操作說明
 
 ## 進入網站首頁
+>在使用本網站的功能之前，必須先註冊並登入，才能開始使用。
 [點擊進入網站](https://taskyourself.herokuapp.com/)即可前往。
 
 ## 新增任務

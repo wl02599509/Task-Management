@@ -30,6 +30,12 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  # member_system
+  sign_up: Sign Up
+  sign_in: Sign In
+  sign_out: Sign Out
+  sure_to_sign_out?: Are you sure to Sign Out?
+
   #AASM
   to_be_started: To be started
   in_progress: In progress
@@ -48,6 +54,15 @@ en:
       previous: previous
       next: next
 
+  #controller/user
+  user_sign_up: Sign up successfully!
+  user_sign_in: Sign in successfully!
+  user_sign_out: Sign out successfully!
+
+  #views/user
+  member_sign_up: Member Sign Up
+  member_sign_in: Member Sign In
+
   #views/tasks/index
   task_index: Task Index
   task_title: Task_Title
@@ -61,8 +76,8 @@ en:
   delete_task: delete
   are_your_sure_to_delete?: Are your sure to delete?
   no_deadline: No Deadline
-  button_in_progress: Start
-  button_done: Done
+  link_in_progress: Start
+  link_done: Done
   search: Search
 
   #views/tasks/show
@@ -75,7 +90,7 @@ en:
   task_created: Task Created!
   task_updated: Task Updated!
   task_deleted: Task Deleted!
-
+  state_changed: State Changed!
 
   activerecord:
     attributes:
@@ -86,5 +101,9 @@ en:
         end_at: Deadline
         state: State
         priority: Priority
+      user:
+        name: User Name
+        email: E-mail
+        password: Password
     model:
       task: task
