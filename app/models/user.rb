@@ -22,5 +22,4 @@ class User < ApplicationRecord
     password_in_system = "#{self.password}t8A3s@K7y!O-u$R%s%ElF"
     self.password = Digest::SHA2.hexdigest password_in_system
   end
-
 end

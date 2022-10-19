@@ -5,6 +5,8 @@ RSpec.feature "Searches", type: :feature do
     create(:task, :many_to_be_started)
     create(:task, :many_in_progress)
     create(:task, :many_done)
+    user = create(:user)
+    login(user)
     visit root_path
   end
 

@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
+  before do
+    user = create(:user)
+    sign_in(user)
+  end
+
   it "validates title presence" do
     title_valid = build(:task)
     title_nil = build(:task, :title_nil)

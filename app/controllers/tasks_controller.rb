@@ -44,17 +44,9 @@ class TasksController < ApplicationController
   end
 
   def change_state
-    if @task.state === 'to_be_started'
-      @task.start! 
-      redirect_to root_path, notice: 'state_changed'
-      return
-    end
-
-    if @task.state === 'in_progress'
-      @task.finish! 
-      redirect_to root_path, notice: 'state_changed'
-      return
-    end
+    return @task.start! redirect_to root_path, notice: I18n.t('state_changed') if @task.state === 'to_be_started'
+    
+    return @task.finish! redirect_to root_path, notice: I18n.t('state_changed') if @task.state === 'in_progress'
   end
 
   private
