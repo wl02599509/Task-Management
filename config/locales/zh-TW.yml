@@ -48,12 +48,16 @@ zh-TW:
   link_in_progress: 開始
   link_done: 結案
   search: 搜尋
+  no_content: 尚無任務
 
   #views/tasks/show
   back_to_task_index: 返回任務列表
 
   #views/tasks/_form
   submit: 送出
+
+  #views/tasks/new
+  create_new_task: 建立新任務
 
   #controller/task
   task_created: 任務新增成功。
