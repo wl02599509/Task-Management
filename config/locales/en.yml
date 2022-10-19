@@ -79,6 +79,7 @@ en:
   link_in_progress: Start
   link_done: Done
   search: Search
+  no_content: No content
 
   #views/tasks/show
   back_to_task_index: back to task index

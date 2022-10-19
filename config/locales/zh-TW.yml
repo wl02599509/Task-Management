@@ -48,6 +48,7 @@ zh-TW:
   link_in_progress: 開始
   link_done: 結案
   search: 搜尋
+  no_content: 尚無任務
 
   #views/tasks/show
   back_to_task_index: 返回任務列表
