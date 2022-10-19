@@ -59,6 +59,15 @@ zh-TW:
   #views/tasks/new
   create_new_task: 建立新任務
 
+  #views/admin/user/index
+  users_index: 使用者列表
+  add_user: 增加使用者
+  no_users: 目前無使用者
+  edit_user: 編輯
+  delete_user: 刪除
+
+
+
   #controller/task
   task_created: 任務新增成功。
   task_updated: 任務更新成功。

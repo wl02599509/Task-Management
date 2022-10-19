@@ -87,6 +87,13 @@ en:
   #views/tasks/_form
   submit: Submit
 
+  #views/admin/user/index
+  users_index: Users Index
+  add_user: Add User
+  no_users: No Users
+  edit_user: edit
+  delete_user: delete
+
   #controller/task
   task_created: Task Created!
   task_updated: Task Updated!

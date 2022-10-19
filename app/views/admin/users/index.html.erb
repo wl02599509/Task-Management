@@ -1,0 +1,47 @@
+<h2 class="py-2 text-5xl"><%= t('users_index') %></h2>
+<div class="flex py-2">
+  <div id="search">
+    <%= form_with model: @users, url: searches_path, method: 'get' do |form| %>
+      <%= form.search_field(:keyword) %>
+      <%= submit_tag t(:search), :class => "p-2 mr-3 border-[1px] border-gray-400 hover:bg-rose-300" %>
+    <% end %>
+  </div>
+  <div class="mr-3 border-[1px] border-rose-200 hover:bg-rose-300">
+    <%= link_to t('add_user'), new_admin_user_path, :class => "px-5 text-3xl" %>
+  </div>
+</div>
+<table class="text-center mb-5">
+  <thead>
+    <tr>
+      <td class="w-[120px] border-[1px] border-gray-400"><%= t('name') %></td>
+      <td class="w-[380px] border-[1px] border-gray-400"><%= t('email') %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @users.empty? %>
+      <td>
+        <span><%= t('no_users') %></span>
+      </td>
+    <% else %>
+      <% @users.each do |user| %>
+        <tr id="user_line" class="flex-wrap border-[1px] border-b-gray-300">
+          <td class="w-[120px] mx-auto">
+            <span><%= link_to user.name, admin_user_path(user), :class => "inline-block w-full hover:bg-rose-200 break-all" %></span>
+          </td>
+          <td class="w-[380px] p-3 break-words">
+            <p><%= user.email %></p>
+          </td>
+          <td class="px-[31px] py-5">
+            <%= link_to t('edit_user'), edit_admin_user_path(user), :class => "block p-[5px] border-[1px] border-black rounded-md hover:bg-rose-200" %>
+          </td>
+          <td class="px-[31px] py-5">
+            <%= link_to t('delete_user'), admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: t('are_your_sure_to_delete?') }, :class => "block p-[5px] border-[1px] border-gray-300 text-gray-300 rounded-md hover:border-gray-600 hover:text-gray-600" %>
+          </td>
+        </tr>
+      <% end %>
+      <div class="py-2">
+        <%= paginate @users %>
+      </div>      
+    <% end %>
+  </tbody>
+</table>

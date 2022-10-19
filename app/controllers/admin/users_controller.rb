@@ -2,10 +2,12 @@ class Admin::UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(5)
   end
   
-  def show; end
+  def show
+    @user_pages = @user.tasks.page(params[:page]).per(5)
+  end
   
   def new
     @user = User.new
@@ -23,7 +25,11 @@ class Admin::UsersController < ApplicationController
   def edit; end
   
   def update
-    if @user.update(params)
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+    end
+
+    if @user.update(user_params)
       redirect_to admin_users_path, notice: I18n.t('user_updated')
     else
       render :edit, status: :unprocessable_entity
@@ -31,12 +37,13 @@ class Admin::UsersController < ApplicationController
   end
   
   def destroy
+    session[:current_user_id] = nil
     @user.destroy
     redirect_to admin_users_path, status: :see_other, notice: I18n.t('user_deleted')
   end
   
   private
-  def params
+  def user_params
     params.require(:user).permit(:name, :email, :password)
   end
   
