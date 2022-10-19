@@ -33,7 +33,7 @@ zh-TW:
   member_sign_in: 會員登入
 
   #views/tasks/_main
-  task_index: 任務清單
+  tasks_index: 任務清單
   task_title: 任務主題
   task_content: 內容
   task_state: 任務狀態
@@ -41,8 +41,8 @@ zh-TW:
   task_created_at: 開始時間
   end_at: 結束時間
   add_task: 增加任務
-  edit_task: 編輯任務
-  delete_task: 刪除任務
+  edit_task: 編輯
+  delete_task: 刪除
   are_your_sure_to_delete?: 確定要刪除嗎？
   no_deadline: 無期限
   link_in_progress: 開始
@@ -64,6 +64,11 @@ zh-TW:
   task_updated: 任務更新成功。
   task_deleted: 任務已刪除。
   state_changed: 狀態已變更。
+
+  #controller/admin/user
+  user_created: 使用者新增成功。
+  user_updated: 使用者更新成功。
+  user_deleted: 使用者刪除成功。
 
   activerecord:
     attributes:

@@ -64,9 +64,9 @@ en:
   member_sign_in: Member Sign In
 
   #views/tasks/index
-  task_index: Task Index
-  task_title: Task_Title
-  task_content: Task_Content
+  tasks_index: Tasks Index
+  task_title: Title
+  task_content: Content
   task_priority: Priority
   task_state: State
   task_created_at: Start
@@ -92,6 +92,11 @@ en:
   task_updated: Task Updated!
   task_deleted: Task Deleted!
   state_changed: State Changed!
+
+  #controller/admin/user
+  user_created: User Created!
+  user_updated: User Updated!
+  user_deleted: User Deleted!
 
   activerecord:
     attributes:
