@@ -46,24 +46,8 @@ FactoryBot.define do
     trait :in_progress do
       state { 'in_progress' }
     end
-
-    trait :many_to_be_started do
-      state { 'to_be_started' }
-      after :create do
-        create_list(:task, 5)
-      end
-    end
-    trait :many_in_progress do
-      state { 'in_progress' }
-      after :create do
-        create_list(:task, 5)
-      end
-    end
-    trait :many_done do
+    trait :done do
       state { 'done' }
-      after :create do
-        create_list(:task, 5)
-      end
     end
 
     #priority
