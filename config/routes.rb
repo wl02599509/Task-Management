@@ -9,4 +9,11 @@ Rails.application.routes.draw do
   end
   resources :searches, only: [:index]
   resources :priorities, only: [:index]
+  resources :users, only: [:create] do
+    collection do
+      get :sign_up
+      get :sign_in
+    end
+  end
+  resources :sessions, only: [:create, :destroy]
 end

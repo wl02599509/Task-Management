@@ -34,13 +34,13 @@ class Task < ApplicationRecord
     @state = nil
   end
 
-  def self.search(search)
+  def self.search(search, current_user)
     keyword = search
     search_state_i18n(keyword)
     if @state
-      self.where("state like ?", "%#{@state}%")
+      self.where("state like ?", "%#{@state}%").where(user_id: current_user)
     else
-      self.where("title like ?", "%#{keyword}%")
+      self.where("title like ?", "%#{keyword}%").where(user_id: current_user)
     end
   end
 end
