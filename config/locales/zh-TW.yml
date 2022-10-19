@@ -56,6 +56,9 @@ zh-TW:
   #views/tasks/_form
   submit: 送出
 
+  #views/tasks/new
+  create_new_task: 建立新任務
+
   #controller/task
   task_created: 任務新增成功。
   task_updated: 任務更新成功。
