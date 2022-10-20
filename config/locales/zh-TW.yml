@@ -1,6 +1,6 @@
 zh-TW:
   #layout/application
-  admin: 管理
+  admin: 管理頁面
   greeting: 您好
 
   # member_system
@@ -65,12 +65,13 @@ zh-TW:
 
   #views/admin/user/index
   users_index: 使用者列表
-  add_user: 增加使用者
+  add_user: 新增使用者
   no_users: 目前無使用者
   edit_user: 編輯
   delete_user: 刪除
-
-
+  name: 使用者姓名
+  email: 電子信箱
+  tasks_count: 任務總數
 
   #controller/task
   task_created: 任務新增成功。
