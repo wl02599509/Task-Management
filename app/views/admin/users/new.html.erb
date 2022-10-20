@@ -1,0 +1,42 @@
+<div class="w-[500px] mx-auto mb-5">
+  <div class="py-10 border-[1px] border-rose-500 rounded-xl">
+    <% if @user.errors.any? %>
+      <div id="errors-message" class="w-fit mx-auto">
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= t(message) %></li>
+        <% end %>
+      </div>
+    <% end %>
+    <%= form_with model: @user, url: admin_users_path, method: :post  do |form| %>
+      <div class="w-fit mx-auto">
+        <div class="p-5 flex">
+          <span class="mr-3 my-auto">
+            <%= form.label :name %>
+          </span>
+          <div>
+            <%= form.text_field :name, :class => "w-full" %>
+          </div>
+        </div>
+        <div class="p-5 flex">
+          <span class="mr-7 my-auto">
+            <%= form.label :email %>
+          </span>
+          <div>
+            <%= form.text_field :email %>
+          </div>
+        </div>
+        <div class="p-5 flex">
+          <span class="mr-14 my-auto">
+            <%= form.label :password %>
+          </span>
+          <div>
+            <%= form.password_field :password %>
+          </div>
+        </div>
+        <div class="text-center">
+          <%= form.submit t('submit'), :class => "px-[10px] border-[1px] border-black rounded-2xl hover:bg-rose-200" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

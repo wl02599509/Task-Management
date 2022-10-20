@@ -1,0 +1,55 @@
+<h2 class="py-2 text-5xl"><%= "#{@user.name + " " + t('tasks_index')}" %></h2>
+<table class="text-center mb-5">
+  <thead>
+    <tr>
+      <td class="w-[120px] border-[1px] border-gray-400"><%= t('task_title') %></td>
+      <td class="w-[380px] border-[1px] border-gray-400"><%= t('task_content') %></td>
+      <td class="px-4 border-[1px] border-gray-400"><%= t('task_state') %></td>
+      <td class="px-4 border-[1px] border-gray-400"><%= t('task_priority') %></td>
+      <td class="border-[1px] border-gray-400"><%= t('task_created_at') %></td>
+      <td class="border-[1px] border-gray-400"><%= t('end_at') %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @user.tasks.empty? %>
+      <td>
+        <span><%= t('no_content') %></span>
+      </td>
+    <% else %>
+      <% @user.tasks.each do |task| %>
+        <tr id="task_line" class="flex-wrap border-[1px] border-b-gray-300">
+          <td class="w-[120px] mx-auto">
+            <span class="inline-block w-full break-all"><%= task.title %></span>
+          </td>
+          <td class="w-[380px] p-3 break-words">
+            <p><%= task.content %></p>
+          </td>
+          <td class="px-6">
+            <% if t(task.state) === t('done') %>
+              <div class="bg-rose-200 rounded-2xl">
+                <span><%= t('done') %></span>
+              <div>
+            <% elsif t(task.state) === t('in_progress') %>
+                <span class="p-[4px] bg-yellow-300 rounded-2xl"><%= t('in_progress') %></span>
+            <% else %>
+              <span class="p-[4px]"><%= t(task.state) %></span>
+            <% end %>
+          </td>
+          <td class="px-6 py-5"><%= t(task.priority) %></td>
+          <td class="px-6 py-5">
+            <span class="inline-block w-full text-sm"><%= task.created_at.strftime('%Y-%m-%d') %></span>
+          </td>
+          <% if task.end_at != nil %>
+            <td class="px-6 py-5">
+              <span class="inline-block w-full text-sm"><%= task.end_at.strftime('%Y-%m-%d') %></span>
+            </td>
+          <% else %>
+            <td class="px-6 py-5">
+              <span><%= t('no_deadline') %></span>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

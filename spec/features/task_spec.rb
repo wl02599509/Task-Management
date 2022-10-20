@@ -12,7 +12,7 @@ RSpec.feature 'Tasks', type: :feature do
     end
 
     scenario 'root' do
-      expect(page).to have_content(I18n.t('task_index'))
+      expect(page).to have_content(I18n.t('tasks_index'))
     end
 
     scenario '#index created_at desc' do
