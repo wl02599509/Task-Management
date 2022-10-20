@@ -10,6 +10,7 @@ zh-TW:
   sure_to_sign_out?: 確定要登出嗎？
   password_confirmation: 再次確認密碼
   password_and_password_confirmation_must_be_the_same: 與確認密碼不一致
+  sign_in_fail: 登入失敗
 
   #AASM
   to_be_started: 待處理
