@@ -34,6 +34,14 @@
             <%= form.password_field :password %>
           </div>
         </div>
+        <div class="p-5 flex">
+          <span class="mr-7 my-auto">
+            <%= form.label :password_confirmation %>
+          </span>
+          <div class="ml-5s">
+            <%= form.password_field :password_confirmation %>
+          </div>
+        </div>
         <div class="text-center">
           <%= form.submit t('sign_up'), :class => "px-[10px] border-[1px] border-black rounded-2xl hover:bg-rose-200" %>
         </div>

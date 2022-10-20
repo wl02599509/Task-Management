@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   before_create :encrypt
+  before_validation :confirm_password
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   
@@ -14,6 +15,13 @@ class User < ApplicationRecord
     password = user_params[:password]
     encrypt_password = Digest::SHA2.hexdigest "#{password}t8A3s@K7y!O-u$R%s%ElF"
     find_by!(email: email, password: encrypt_password)
+  end
+
+  def confirm_password
+    if self.password != self.password_confirmation
+      errors.add(:password, I18n.t("password_and_password_confirmation_must_be_the_same"))
+      throw :abort
+    end
   end
 
   private
