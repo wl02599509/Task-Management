@@ -30,6 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  #layout/application
+  admin: administration
+  greeting: Welcome
+
   # member_system
   sign_up: Sign Up
   sign_in: Sign In
@@ -93,6 +97,7 @@ en:
   no_users: No Users
   edit_user: edit
   delete_user: delete
+  
 
   #controller/task
   task_created: Task Created!
@@ -118,5 +123,6 @@ en:
         name: User Name
         email: E-mail
         password: Password
+        tasks_count: Tasks Amount
     model:
       task: task

@@ -12,21 +12,40 @@
 
   <body>
     <section class="w-[1200px] mx-auto">
-      <nav class='bg-red-300 text-center py-5'>
-        <h1 class="text-4xl"><%= link_to "TaskYourself", root_path, :class => "hover:text-white"%></h1>
-        <% if user_sign_in? %>
-        <div>
-          <span><%= current_user.name %></span>
+      <nav class='flex justify-between bg-red-300 text-center py-5'>
+        <div class="pl-2">
           <span>
-            <%= link_to t('sign_out'), session_path(current_user), data: { turbo_method: :delete, turbo_confirm: t('sure_to_sign_out?') } %>
+            <%= link_to t('admin'), admin_users_path, :class => "hover:bg-rose-100" %>
           </span>
         </div>
-        <% else %>
+        <h1 class="mr-[-16px] text-4xl">
+          <%= link_to "TaskYourself", root_path, :class => "hover:text-white"%>
+        </h1>
         <div>
-          <span><%= link_to t('sign_up'), sign_up_users_path %></span>
-          <span><%= link_to t('sign_in'), sign_in_users_path %></span>
+          <% if user_sign_in? %>
+            <div class="pr-2">
+              <span class="mr-2"><%= "#{current_user.name}" + " " + t('greeting') %></span>
+              <span>
+                <%= link_to t('sign_out'), 
+                    session_path(current_user), 
+                    data: { turbo_method: :delete, 
+                            turbo_confirm: t('sure_to_sign_out?'), 
+                          }, 
+                    :class => "hover:bg-rose-100" 
+                %>
+              </span>
+            </div>
+          <% else %>
+            <div class="pr-2">
+              <span>
+                <%= link_to t('sign_up'), sign_up_users_path, :class => "hover:bg-rose-100" %>
+              </span>
+              <span>
+                <%= link_to t('sign_in'), sign_in_users_path, :class => "hover:bg-rose-100" %>
+              </span>
+            </div>
+          <% end %>
         </div>
-        <% end %>
       </nav>
       <div class="w-[1150px] mx-auto mt-5">
         <div class="my-2 mx-auto">

@@ -5,10 +5,6 @@ class Admin::UsersController < ApplicationController
     @users = User.page(params[:page]).per(5)
   end
   
-  def show
-    @user_pages = @user.tasks.page(params[:page]).per(5)
-  end
-  
   def new
     @user = User.new
   end

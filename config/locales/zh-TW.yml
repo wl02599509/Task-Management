@@ -1,4 +1,8 @@
 zh-TW:
+  #layout/application
+  admin: 管理
+  greeting: 您好
+
   # member_system
   sign_up: 註冊
   sign_in: 登入
@@ -92,5 +96,6 @@ zh-TW:
         name: 使用者姓名
         email: 電子信箱
         password: 密碼
+        tasks_count: 任務總數
     model:
       task: 任務

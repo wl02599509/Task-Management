@@ -25,6 +25,14 @@
             <%= form.text_field :email %>
           </div>
         </div>
+        <div class="p-5 flex">
+          <span class="mr-14 my-auto">
+            <%= form.label :password %>
+          </span>
+          <div>
+            <%= form.password_field :password %>
+          </div>
+        </div>
         <div class="text-center">
           <%= form.submit t('submit'), :class => "px-[10px] border-[1px] border-black rounded-2xl hover:bg-rose-200" %>
         </div>
