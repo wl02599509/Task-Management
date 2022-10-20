@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
 
       redirect_to root_path, notice: I18n.t(:user_sign_in)
     else
-      flash.now[:alert] = "No user"
-      render 'users/sign_in', status: :unprocessable_entity
+      redirect_to sign_in_users_path, notice: I18n.t(:sign_in_fail)
     end
   end
 

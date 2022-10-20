@@ -18,7 +18,7 @@ class User < ApplicationRecord
     email = user_params[:email]
     password = user_params[:password]
     encrypt_password = Digest::SHA2.hexdigest "#{password}t8A3s@K7y!O-u$R%s%ElF"
-    find_by!(email: email, password: encrypt_password)
+    find_by(email: email, password: encrypt_password)
   end
   
   private

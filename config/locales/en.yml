@@ -40,7 +40,8 @@ en:
   sign_out: Sign Out
   sure_to_sign_out?: Are you sure to Sign Out?
   password_and_password_confirmation_must_be_the_same: and password confirmation must be the same
-  
+  sign_in_fail: Failed to sign in
+
   #AASM
   to_be_started: To be started
   in_progress: In progress
