@@ -1,12 +1,14 @@
 class SessionsController < ApplicationController
   def create
-    user = User.login(params[:user])
-    if user 
+    user = User.sign_in(params[:user])
+
+    if user
       session[:current_user_id] = user.id
 
       redirect_to root_path, notice: I18n.t(:user_sign_in)
     else
-      render :sign_in, status: :unprocessable_entity
+      flash.now[:alert] = "No user"
+      render 'users/sign_in', status: :unprocessable_entity
     end
   end
 

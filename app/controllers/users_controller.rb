@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:current_user_id] = @user.id
       redirect_to root_path, notice: I18n.t(:user_sign_up)
     else
       render :sign_up, status: :unprocessable_entity
