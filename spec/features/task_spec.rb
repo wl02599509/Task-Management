@@ -28,10 +28,10 @@ RSpec.feature 'Tasks', type: :feature do
       click_on I18n.t('add_task')
       within '#new_task' do
         fill_in 'task_title', with: Faker::Job.title
-        fill_in 'task_content', with: Faker::Job.field
+        find('trix-editor').set(Faker::Job.field)
+        click_on I18n.t('submit')
       end
-      click_on I18n.t('submit')
-      expect(page).to have_content(I18n.t('task_created'))
+      expect(page).to have_content('任務內容不能為空白')
     end
 
     scenario '#edit' do
@@ -39,7 +39,7 @@ RSpec.feature 'Tasks', type: :feature do
       click_on I18n.t('edit_task')
       within '.edit_task' do
         fill_in 'task_title', with: Faker::Job.title
-        fill_in 'task_content', with: Faker::Job.field
+        find('trix-editor').set Faker::Job.field
       end
       click_on I18n.t('submit')
       expect(page).to have_content(I18n.t('task_updated'))
