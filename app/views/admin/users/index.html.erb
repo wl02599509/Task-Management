@@ -21,7 +21,7 @@
       <% @users.each do |user| %>
         <tr id="user_line" class="flex-wrap border-[1px] border-b-gray-300">
           <td class="w-[120px] mx-auto">
-            <span><%= link_to user.name, admin_user_tasks_path(user), :class => "inline-block w-full hover:bg-rose-200 break-all" %></span>
+            <div><%= link_to user.name, admin_user_tasks_path(user), :class => "inline-block w-full hover:bg-rose-200 break-words" %></div>
           </td>
           <td class="w-[380px] p-3 break-words">
             <p><%= user.email %></p>
@@ -36,8 +36,7 @@
                         turbo_method: :delete, 
                         turbo_confirm: t('are_your_sure_to_delete?'), 
                       }, 
-                :class => "block p-[5px] border-[1px] border-gray-300 text-gray-300 rounded-md hover:border-gray-600 hover:text-gray-600" 
-            %>
+                :class => "block p-[5px] border-[1px] border-gray-300 text-gray-300 rounded-md hover:border-gray-600 hover:text-gray-600" %>
           </td>
         </tr>
       <% end %>

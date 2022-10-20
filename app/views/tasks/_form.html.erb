@@ -10,33 +10,33 @@
     <%= form_for task do |form| %>
       <div class="w-fit mx-auto">
         <div class="p-5 flex">
-          <span class="mr-3 my-auto">
+          <div class="mr-3 my-auto">
             <%= form.label :title %>
-          </span>
+          </div>
           <div>
             <%= form.text_field :title, :class => "w-full" %>
           </div>
         </div>
         <div class="p-5 flex">
-          <span class="mr-3 my-auto">
+          <div class="mr-3 my-auto">
             <%= form.label :content %>
-          </span>
+          </div>
           <div>
             <%= form.text_area :content %>
           </div>
         </div>
         <div class="p-5 flex">
-          <span class="mr-3 my-auto">
+          <div class="mr-3 my-auto">
             <%= form.label :priority %>
-          </span>
+          </div>
           <div class="ml-8">
             <%= form.select :priority, [[t('high'), "0"], [t('normal'), "1"], [t('low'), "2"]] %>
           </div>
         </div>
         <div class="p-5 flex">
-          <span class="mr-3 my-auto">
+          <div class="mr-3 my-auto">
             <%= form.label :end_at %>
-          </span>
+          </div>
           <div>
             <%= form.date_field :end_at, min: Date.today %>
           </div>

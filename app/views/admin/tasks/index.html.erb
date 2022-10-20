@@ -6,8 +6,8 @@
       <td class="w-[380px] border-[1px] border-gray-400"><%= t('task_content') %></td>
       <td class="px-4 border-[1px] border-gray-400"><%= t('task_state') %></td>
       <td class="px-4 border-[1px] border-gray-400"><%= t('task_priority') %></td>
-      <td class="border-[1px] border-gray-400"><%= t('task_created_at') %></td>
-      <td class="border-[1px] border-gray-400"><%= t('end_at') %></td>
+      <td class="px-4 border-[1px] border-gray-400"><%= t('task_created_at') %></td>
+      <td class="px-4 border-[1px] border-gray-400"><%= t('end_at') %></td>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +19,7 @@
       <% @user.tasks.each do |task| %>
         <tr id="task_line" class="flex-wrap border-[1px] border-b-gray-300">
           <td class="w-[120px] mx-auto">
-            <span class="inline-block w-full break-all"><%= task.title %></span>
+            <span class="inline-block w-full break-words"><%= task.title %></span>
           </td>
           <td class="w-[380px] p-3 break-words">
             <p><%= task.content %></p>
