@@ -47,8 +47,10 @@
         <% end %>
       </nav>
       <div class="w-[1150px] mx-auto mt-5">
-        <div class="my-2 mx-auto">
-          <span><%= notice %></span>
+        <div class="my-2 text-center text-xl">
+          <% if notice %>
+            <div><%="＊＊" + notice + "＊＊"%></div>
+          <% end %>
         </div>
         <div>
           <%= yield %>
