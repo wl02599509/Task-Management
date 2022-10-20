@@ -8,6 +8,8 @@ zh-TW:
   sign_in: 登入
   sign_out: 登出
   sure_to_sign_out?: 確定要登出嗎？
+  password_confirmation: 再次確認密碼
+  password_and_password_confirmation_must_be_the_same: 與確認密碼不一致
 
   #AASM
   to_be_started: 待處理
@@ -97,6 +99,7 @@ zh-TW:
         name: 使用者姓名
         email: 電子信箱
         password: 密碼
+        password_confirmation: 確認密碼
         tasks_count: 任務總數
     model:
       task: 任務
