@@ -75,12 +75,16 @@ zh-TW:
   name: 使用者姓名
   email: 電子信箱
   tasks_count: 任務總數
+  must_one_admin: 管理者人數至少為一位！
 
   #controller/task
   task_created: 任務新增成功。
   task_updated: 任務更新成功。
   task_deleted: 任務已刪除。
   state_changed: 狀態已變更。
+
+  #controller/admin/admin
+  permission_denied: 使用者權限不足。
 
   #controller/admin/user
   user_created: 使用者新增成功。
@@ -102,5 +106,6 @@ zh-TW:
         password: 密碼
         password_confirmation: 確認密碼
         tasks_count: 任務總數
+        role: 使用者身份
     model:
       task: 任務
