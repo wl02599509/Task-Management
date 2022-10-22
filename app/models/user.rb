@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
-  before_create :encrypt
+  after_validation :encrypt
+  before_destroy :must_one_admin
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   
@@ -14,6 +15,9 @@ class User < ApplicationRecord
                         length: { minimum: 8 }
   validates :password_confirmation, presence: true
 
+  # admin 設定 99，以防誤設定。
+  enum role: { admin: '99', user: '1' }
+
   def self.sign_in(user_params)
     email = user_params[:email]
     password = user_params[:password]
@@ -22,6 +26,12 @@ class User < ApplicationRecord
   end
   
   private
+
+  def must_one_admin
+    if User.where(:role => '99').count === 1
+      throw(:abort)
+    end
+  end
 
   def encrypt
     password_in_system = "#{self.password}t8A3s@K7y!O-u$R%s%ElF"

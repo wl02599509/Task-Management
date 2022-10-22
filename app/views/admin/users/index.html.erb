@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <td class="w-[120px] border-[1px] border-gray-400"><%= t('name') %></td>
+      <td class="w-[120px] border-[1px] border-gray-400"><%= t('role') %></td>
       <td class="w-[380px] border-[1px] border-gray-400"><%= t('email') %></td>
       <td class="w-[120px] border-[1px] border-gray-400"><%= t('tasks_count') %></td>
     </tr>
@@ -22,6 +23,9 @@
         <tr id="user_line" class="flex-wrap border-[1px] border-b-gray-300">
           <td class="w-[120px] mx-auto">
             <div><%= link_to user.name, admin_user_tasks_path(user), :class => "inline-block w-full hover:bg-rose-200 break-words" %></div>
+          </td>
+          <td class="w-[120px] p-3">
+            <p><%= user.role %></p>
           </td>
           <td class="w-[380px] p-3 break-words">
             <p><%= user.email %></p>
