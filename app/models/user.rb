@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
-  before_create :encrypt
+  after_validation :encrypt
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   
@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
 
   # admin 設定 99，以防誤設定。
-  enum role: { admin: 99, user: 1 }
+  enum role: { admin: '99', user: '1' }
 
   def self.sign_in(user_params)
     email = user_params[:email]

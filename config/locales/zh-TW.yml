@@ -105,5 +105,6 @@ zh-TW:
         password: 密碼
         password_confirmation: 確認密碼
         tasks_count: 任務總數
+        role: 使用者身份
     model:
       task: 任務

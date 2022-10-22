@@ -129,5 +129,6 @@ en:
         email: E-mail
         password: Password
         tasks_count: Tasks Amount
+        role: Role
     model:
       task: task

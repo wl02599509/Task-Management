@@ -33,14 +33,13 @@ class Admin::UsersController < Admin::AdminsContrtoller
   end
   
   def destroy
-    session[:current_user_id] = nil
     @user.destroy
     redirect_to admin_users_path, status: :see_other, notice: I18n.t('user_deleted')
   end
   
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
   end
   
   def find_user

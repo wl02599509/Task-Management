@@ -19,6 +19,14 @@
           </div>
         </div>
         <div class="p-5 flex">
+          <span class="mr-3 my-auto">
+            <%= form.label :role %>
+          </span>
+          <div>
+            <%= form.text_field :role, :class => "w-full" %>
+          </div>
+        </div>
+        <div class="p-5 flex">
           <span class="mr-7 my-auto">
             <%= form.label :email %>
           </span>
@@ -32,6 +40,14 @@
           </span>
           <div>
             <%= form.password_field :password %>
+          </div>
+        </div>
+        <div class="p-5 flex">
+          <span class="mr-7 my-auto">
+            <%= form.label :password_confirmation %>
+          </span>
+          <div class="ml-5s">
+            <%= form.password_field :password_confirmation %>
           </div>
         </div>
         <div class="text-center">

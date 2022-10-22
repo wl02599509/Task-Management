@@ -72,7 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_051516) do
     t.string "password", default: "", null: false
     t.integer "tasks_count", default: 0
     t.string "password_confirmation", default: "", null: false
-    t.integer "role", default: 1
+    t.string "role", default: "1"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
