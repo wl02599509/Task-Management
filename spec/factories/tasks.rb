@@ -23,7 +23,8 @@ FactoryBot.define do
       content { nil }
     end
     trait :content_150 do
-      content { Faker::Number.number(digits: 150) }
+      # action_text 字數計算 113 為 150上限
+      content { Faker::Number.number(digits: 113) }
     end
     trait :content_151 do
       content { Faker::Number.number(digits: 151) }

@@ -8,6 +8,7 @@ RSpec.feature 'Tasks', type: :feature do
     let(:user) { User.find(task.user_id) }
 
     before do
+      visit sign_in_users_path
       sign_in(user)
     end
 
@@ -25,13 +26,17 @@ RSpec.feature 'Tasks', type: :feature do
     end
 
     scenario '#new' do
+      Capybara.current_driver = :selenium_chrome_headless
+      visit sign_in_users_path
+      sign_in(user)
       click_on I18n.t('add_task')
       within '#new_task' do
         fill_in 'task_title', with: Faker::Job.title
-        fill_in 'task_content', with: Faker::Job.field
+        find('trix-editor').set(Faker::Job.title)
+        click_on I18n.t('submit')
       end
-      click_on I18n.t('submit')
       expect(page).to have_content(I18n.t('task_created'))
+      Capybara.use_default_driver
     end
 
     scenario '#edit' do
@@ -39,7 +44,7 @@ RSpec.feature 'Tasks', type: :feature do
       click_on I18n.t('edit_task')
       within '.edit_task' do
         fill_in 'task_title', with: Faker::Job.title
-        fill_in 'task_content', with: Faker::Job.field
+        find('trix-editor').set Faker::Job.field
       end
       click_on I18n.t('submit')
       expect(page).to have_content(I18n.t('task_updated'))
@@ -58,12 +63,16 @@ RSpec.feature 'Tasks', type: :feature do
     end
 
     scenario '#show' do
+      Capybara.current_driver = :selenium_chrome_headless
       task
-      visit root_path
+      visit sign_in_users_path
+      sign_in(user)
       click_on task.title
+      task_content = task.content.body_before_type_cast.delete('/').gsub('<div>', '')
       expect(page).to have_content(task.title)
-      expect(page).to have_content(task.content)
+      expect(page).to have_content(task_content)
       expect(page).to have_content(I18n.t('back_to_task_index'))
+      Capybara.use_default_driver
     end
   end
 
