@@ -34,14 +34,16 @@
           <td class="px-[31px] py-5">
             <%= link_to t('edit_user'), edit_admin_user_path(user), :class => "block p-[5px] border-[1px] border-black rounded-md hover:bg-rose-200" %>
           </td>
-          <td class="px-[31px] py-5">
-            <%= link_to t('delete_user'), admin_user_path(user), 
-                data: { 
-                        turbo_method: :delete, 
-                        turbo_confirm: t('are_your_sure_to_delete?'), 
-                      }, 
-                :class => "block p-[5px] border-[1px] border-gray-300 text-gray-300 rounded-md hover:border-gray-600 hover:text-gray-600" %>
-          </td>
+          <% if current_user.id != user.id %>
+            <td class="px-[31px] py-5">
+              <%= link_to t('delete_user'), admin_user_path(user), 
+                  data: { 
+                          turbo_method: :delete, 
+                          turbo_confirm: t('are_your_sure_to_delete?'), 
+                        }, 
+                  :class => "block p-[5px] border-[1px] border-gray-300 text-gray-300 rounded-md hover:border-gray-600 hover:text-gray-600" %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
       <div class="py-2">
