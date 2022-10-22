@@ -75,6 +75,7 @@ zh-TW:
   name: 使用者姓名
   email: 電子信箱
   tasks_count: 任務總數
+  must_one_admin: 管理者人數至少為一位！
 
   #controller/task
   task_created: 任務新增成功。

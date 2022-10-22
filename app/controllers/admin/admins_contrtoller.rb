@@ -1,5 +1,5 @@
 class Admin::AdminsContrtoller < ApplicationController
-  before_action :admin_only
+  before_action :authenticate_user!, :admin_only
 
   private
 

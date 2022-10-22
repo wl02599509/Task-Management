@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   after_validation :encrypt
+  before_destroy :must_one_admin
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   
@@ -25,6 +26,12 @@ class User < ApplicationRecord
   end
   
   private
+
+  def must_one_admin
+    if User.where(:role => '99').count === 1
+      throw(:abort)
+    end
+  end
 
   def encrypt
     password_in_system = "#{self.password}t8A3s@K7y!O-u$R%s%ElF"

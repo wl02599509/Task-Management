@@ -33,8 +33,11 @@ class Admin::UsersController < Admin::AdminsContrtoller
   end
   
   def destroy
-    @user.destroy
-    redirect_to admin_users_path, status: :see_other, notice: I18n.t('user_deleted')
+    if  @user.destroy
+      redirect_to admin_users_path, status: :see_other, notice: I18n.t('user_deleted')
+    else
+      redirect_to admin_users_path, status: :see_other, notice: I18n.t('must_one_admin')
+    end
   end
   
   private

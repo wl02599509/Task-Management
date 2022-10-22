@@ -99,6 +99,7 @@ en:
   no_users: No Users
   edit_user: edit
   delete_user: delete
+  must_one_admin: The amount of Admin is not allowed to be less than One!
   
 
   #controller/task
