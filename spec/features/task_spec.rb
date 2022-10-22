@@ -68,8 +68,10 @@ RSpec.feature 'Tasks', type: :feature do
       visit sign_in_users_path
       sign_in(user)
       click_on task.title
+      text_content = task.content.body_before_type_cast.delete('<div>').delete("brbr/")
+      puts text_content
       expect(page).to have_content(task.title)
-      expect(page).to have_css('div.trix-content')
+      expect(page).to have_content(text_content)
       expect(page).to have_content(I18n.t('back_to_task_index'))
       Capybara.use_default_driver
     end
