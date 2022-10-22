@@ -14,6 +14,9 @@ class User < ApplicationRecord
                         length: { minimum: 8 }
   validates :password_confirmation, presence: true
 
+  # admin 設定 99，以防誤設定。
+  enum role: { admin: 99, user: 1 }
+
   def self.sign_in(user_params)
     email = user_params[:email]
     password = user_params[:password]

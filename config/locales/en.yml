@@ -107,6 +107,9 @@ en:
   task_deleted: Task Deleted!
   state_changed: State Changed!
 
+  #controller/admin/admin
+  permission_denied: Permission Denied!
+
   #controller/admin/user
   user_created: User Created!
   user_updated: User Updated!

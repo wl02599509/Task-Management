@@ -82,6 +82,9 @@ zh-TW:
   task_deleted: 任務已刪除。
   state_changed: 狀態已變更。
 
+  #controller/admin/admin
+  permission_denied: 使用者權限不足。
+
   #controller/admin/user
   user_created: 使用者新增成功。
   user_updated: 使用者更新成功。
