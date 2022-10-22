@@ -6,7 +6,7 @@ class Task < ApplicationRecord
   has_rich_text :content
 
   validates :title, presence: true, length: { maximum: 50 }
-  validates :content, presence: true, length: { maximum: 150 }
+  validates :content, presence: true, length: { maximum: 1000 }
 
   enum priority: { high: '0', normal: '1', low: '2' }
 
