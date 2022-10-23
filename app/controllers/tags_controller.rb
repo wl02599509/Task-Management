@@ -1,14 +1,12 @@
 class TagsController < ApplicationController
-  before_action :find_tag, only: %i[show edit update destroy]
+  before_action :find_tag, only: %i[show destroy]
 
-  def index
+  def show
     @tasks = []
-    TaskTag.where("tag_id": params[:tag_id]).each do |task_tags|
+    TaskTag.where("tag_id": params[:id]).each do |task_tags|
       @tasks << task_tags.task_id
     end
   end
-  
-  def show; end
   
   def new
     @tag = Tag.new
@@ -28,7 +26,8 @@ class TagsController < ApplicationController
   end
   
   def destroy
-    @tag.destroy
+    @task_tag = TaskTag.find_by(:task_id => params[:task_id], :tag_id => params[:id])
+    @task_tag.destroy
     redirect_to root_path
   end
   

@@ -103,7 +103,7 @@
               <%= link_to t('add'), new_task_tag_path(task) %></div>
               <% task.tags.each do |tag| %>
                 <div class="inline-block p-[1px] mx-1 bg-red-100 rounded-xl">
-                <%= link_to tag.title, task_tags_path(task, :tag_id => tag.id) %>
+                <%= link_to tag.title, task_tag_path(task, tag) %>
                 <%= link_to 'x', 
                     task_tag_path(task, tag),
                     data: { turbo_method: :delete,
