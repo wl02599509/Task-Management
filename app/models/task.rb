@@ -3,6 +3,7 @@
 class Task < ApplicationRecord
   include AASM
   belongs_to :user, counter_cache: true
+  has_many :tags
   has_rich_text :content
 
   validates :title, presence: true, length: { maximum: 50 }
