@@ -2,6 +2,8 @@ class TagsController < ApplicationController
   before_action :find_tag, only: %i[show destroy]
 
   def show
+    @tag = Tag.find(params[:id])
+
     @tasks = []
     TaskTag.where("tag_id": params[:id]).each do |task_tags|
       @tasks << task_tags.task_id
