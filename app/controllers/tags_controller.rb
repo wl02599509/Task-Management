@@ -1,7 +1,11 @@
 class TagsController < ApplicationController
   before_action :find_tag, only: %i[show edit update destroy]
+
   def index
-    @tags = Tag.all
+    @tasks = []
+    TaskTag.where("tag_id": params[:tag_id]).each do |task_tags|
+      @tasks << task_tags.task_id
+    end
   end
   
   def show; end
@@ -11,18 +15,16 @@ class TagsController < ApplicationController
   end
   
   def create
-    @tag = Tag.create(tag_params)
-    redirect_to root_path
-  end
-  
-  def edit; end
-  
-  def update
-    if @tag.update(tag_params)
-      redirect_to root_path
+    @existing_tag = Tag.find_by(:title => params[:tag][:title])
+    @task = Task.find(params[:task_id])
+    
+    if @existing_tag != nil
+      @task.tags << @existing_tag
     else
-      render :edit
+      @task.tags.create(tag_params)
     end
+
+    redirect_to root_path
   end
   
   def destroy
@@ -31,6 +33,7 @@ class TagsController < ApplicationController
   end
   
   private
+
   def tag_params
     params.require(:tag).permit(:title)
   end

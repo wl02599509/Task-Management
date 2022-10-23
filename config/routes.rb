@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       post :change_state
     end
+    resources :tags
   end
   resources :searches, only: [:index]
   resources :priorities, only: [:index]
@@ -22,6 +23,4 @@ Rails.application.routes.draw do
       resources :tasks, only: [:index]
     end
   end
-
-  resources :tags
 end

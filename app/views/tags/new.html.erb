@@ -8,7 +8,7 @@
         <% end %>
       </div>
     <% end %>
-    <%= form_for :tag do |form| %>
+    <%= form_for :tag, url: task_tags_path, method: :post  do |form| %>
       <div class="w-fit mx-auto">
         <div class="p-5 flex">
           <div class="mr-3 my-auto">

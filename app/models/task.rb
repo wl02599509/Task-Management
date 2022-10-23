@@ -3,7 +3,7 @@
 class Task < ApplicationRecord
   include AASM
   belongs_to :user, counter_cache: true
-  has_many :task_tags
+  has_many :task_tags, dependent: :destroy
   has_many :tags, through: :task_tags
   has_rich_text :content
 
@@ -44,5 +44,9 @@ class Task < ApplicationRecord
     else
       self.where("title like ?", "%#{keyword}%").where(user_id: current_user)
     end
+  end
+
+  def self.in_tags(params)
+    where()
   end
 end

@@ -99,7 +99,20 @@
             </td>
           <% end %>
           <td class="px-2 py-5">
-            <%= link_to t('add'), new_tag_path %>
+            <div class="">
+              <%= link_to t('add'), new_task_tag_path(task) %></div>
+              <% task.tags.each do |tag| %>
+                <div class="inline-block p-[1px] mx-1 bg-red-100 rounded-xl">
+                <%= link_to tag.title, task_tags_path(task, :tag_id => tag.id) %>
+                <%= link_to 'x', 
+                    task_tag_path(task, tag),
+                    data: { turbo_method: :delete,
+                            turbo_confirm: t('are_your_sure_to_delete?') 
+                          },
+                    :class => 'text-gray-500'
+                %>
+              </div>
+            <% end %>
           </td>
           <td class="px-[31px] py-5">
             <%= link_to t('edit_task'), edit_task_path(task), :class => "block p-[5px] mb-3 border-[1px] border-black rounded-md hover:bg-rose-200" %>
