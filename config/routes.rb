@@ -22,4 +22,6 @@ Rails.application.routes.draw do
       resources :tasks, only: [:index]
     end
   end
+
+  resources :tags
 end

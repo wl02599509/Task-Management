@@ -56,6 +56,9 @@ zh-TW:
   link_done: 結案
   search: 搜尋
   no_content: 尚無任務
+  tag: 標籤
+  add: 新增
+  add_tags: 建立標籤
 
   #views/tasks/show
   back_to_task_index: 返回任務列表
@@ -107,5 +110,7 @@ zh-TW:
         password_confirmation: 確認密碼
         tasks_count: 任務總數
         role: 使用者身份
+      tag:
+        title: 標籤
     model:
       task: 任務
