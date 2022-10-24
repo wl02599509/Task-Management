@@ -1,0 +1,27 @@
+<h2 class="text-center py-2 text-2xl"><%= t('add_tags') %></h2>
+<div class="w-[500px] mx-auto mb-5">
+  <div class="py-10 border-[1px] border-rose-500 rounded-xl">
+    <% if @tag.errors.any? %>
+      <div id="errors-message" class="w-fit mx-auto">
+        <% @tag.errors.full_messages.each do |message| %>
+          <li><%= t(message) %></li>
+        <% end %>
+      </div>
+    <% end %>
+    <%= form_for :tag, url: task_tags_path, method: :post  do |form| %>
+      <div class="w-fit mx-auto">
+        <div class="p-5 flex">
+          <div class="mr-3 my-auto">
+            <%= form.label :title %>
+          </div>
+          <div class="w-[350px]">
+            <%= form.text_field :title, :class => "w-full" %>
+          </div>
+        </div>
+        <div class="text-center">
+          <%= form.submit t('submit'), :class => "px-[10px] border-[1px] border-black rounded-2xl hover:bg-rose-200" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -86,6 +86,8 @@ en:
   link_done: Done
   search: Search
   no_content: No content
+  tag: Tags
+  add: Add
 
   #views/tasks/show
   back_to_task_index: back to task index
