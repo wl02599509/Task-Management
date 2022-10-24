@@ -10,21 +10,22 @@
     <%= link_to t('add_task'), new_task_path, :class => "px-5 text-3xl" %>
   </div>
 </div>
-<table class="text-center mb-5">
+<table class="text-center text-sm mb-5">
   <thead>
     <tr>
       <td class="w-[150px] border-[1px] border-gray-400"><%= t('task_title') %></td>
-      <td class="w-[400px] border-[1px] border-gray-400"><%= t('task_content') %></td>
-      <td class="w-[120px] border-[1px] border-gray-400"><%= t('task_state') %></td>
-      <td class="w-[120px] border-[1px] border-gray-400 hover:bg-rose-200">
+      <td class="w-[380px] border-[1px] border-gray-400"><%= t('task_content') %></td>
+      <td class="w-[100px] border-[1px] border-gray-400"><%= t('task_state') %></td>
+      <td class="w-[100px] border-[1px] border-gray-400 hover:bg-rose-200">
         <%= link_to t('task_priority'), priorities_path, :class => "px-4" %>
       </td>
-      <td class="w-[120px] border-[1px] border-gray-400 hover:bg-rose-200">
+      <td class="w-[100px] border-[1px] border-gray-400 hover:bg-rose-200">
         <%= link_to t('task_created_at'), root_path, :class => "px-5" %>
       </td>
-      <td class="w-[120px] border-[1px] border-gray-400 hover:bg-rose-200">
+      <td class="w-[100px] border-[1px] border-gray-400 hover:bg-rose-200">
         <%= link_to t('end_at'), root_path(:time => "end_at"), :class => "px-5" %>
       </td>
+      <td class="w-[100px] border-[1px] border-gray-400"><%= t('tag') %></td>
       <td></td>
     </tr>
   </thead>
@@ -97,6 +98,22 @@
               </span>
             </td>
           <% end %>
+          <td class="px-2 py-5">
+            <div class="">
+              <%= link_to t('add'), new_task_tag_path(task) %></div>
+              <% task.tags.each do |tag| %>
+                <div class="inline-block p-[1px] mx-1 bg-red-100 rounded-xl">
+                <%= link_to tag.title, task_tag_path(task, tag) %>
+                <%= link_to 'x', 
+                    task_tag_path(task, tag),
+                    data: { turbo_method: :delete,
+                            turbo_confirm: t('are_your_sure_to_delete?') 
+                          },
+                    :class => 'text-gray-500'
+                %>
+              </div>
+            <% end %>
+          </td>
           <td class="px-[31px] py-5">
             <%= link_to t('edit_task'), edit_task_path(task), :class => "block p-[5px] mb-3 border-[1px] border-black rounded-md hover:bg-rose-200" %>
             <%= link_to t('delete_task'), 

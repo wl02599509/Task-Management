@@ -1,0 +1,15 @@
+<div class="w-[300px] m-auto text-center">
+  <h2>
+    <span class="px-2 py-1 bg-red-100 text-xl rounded">
+      Tag: <%= @tag.title %>
+    </span>
+  </h2>
+  <div class="my-2">
+    <span class="text-xl">Tasks:</span>
+    <% @tasks.each do |task_id| %>
+      <div class="my-1 bg-gray-200 rounded">
+        <%= Task.find_by(id: task_id, user_id: current_user.id)&.title %>
+      </div>
+    <% end %>
+  </div>
+</div>
