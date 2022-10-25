@@ -2,6 +2,10 @@
 
 Rails.application.routes.draw do
   root to: 'tasks#index'
+  
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server'
+
   resources :tasks, except: [:index] do
     member do
       post :change_state
