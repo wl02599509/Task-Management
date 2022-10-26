@@ -2,6 +2,7 @@
 
 class TasksController < ApplicationController
   before_action :find_task, only: %i[show edit update destroy change_state]
+  after_action :task_deadline_notice, only: %i[index]
   before_action :authenticate_user!
 
   def index
@@ -57,5 +58,14 @@ class TasksController < ApplicationController
 
   def find_task
     @task = Task.find(params[:id])
+  end
+
+  def task_deadline_notice
+    tasks = Task.where("user_id" === current_user.id).where("end_at <= ?", Time.now)
+    tasks_title = ""
+    tasks.each do |task|
+      tasks_title += task.title
+    end
+    TaskTimeJob.perform(tasks_title)
   end
 end
